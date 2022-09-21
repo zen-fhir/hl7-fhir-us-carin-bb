@@ -1,0 +1,14 @@
+{ns hl7-fhir-us-carin-bb.value-set.NCPDPBrandGenericIndicator,
+ import #{zen.fhir},
+ value-set
+ {:zen/tags #{zen.fhir/value-set},
+  :zen/desc
+  "Denotes brand or generic drug dispensed. (NCPDP ECL 686)\n\nLink to information about the code system - including how to obtain the content: [https://standards.ncpdp.org/Access-to-Standards.aspx](https://standards.ncpdp.org/Access-to-Standards.aspx)",
+  :zen.fhir/version "0.5.21-6",
+  :fhir/code-systems
+  #{{:fhir/url
+     "http://terminology.hl7.org/CodeSystem/NCPDPBrandGenericIndicator",
+     :zen.fhir/content :not-present}},
+  :uri
+  "http://hl7.org/fhir/us/carin-bb/ValueSet/NCPDPBrandGenericIndicator",
+  :version "1.2.0"}}

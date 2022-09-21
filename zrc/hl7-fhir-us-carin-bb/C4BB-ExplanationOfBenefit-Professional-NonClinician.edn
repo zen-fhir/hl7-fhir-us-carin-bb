@@ -1,0 +1,424 @@
+{ns
+ hl7-fhir-us-carin-bb.C4BB-ExplanationOfBenefit-Professional-NonClinician,
+ import
+ #{hl7-fhir-r4-core.Period
+   hl7-fhir-us-carin-bb.value-set.X12ClaimAdjustmentReasonCodesCMSRemittanceAdviceRemarkCodes
+   hl7-fhir-us-carin-bb.value-set.CMSPlaceofServiceCodes
+   hl7-fhir-r4-core.BackboneElement
+   zen.fhir
+   hl7-fhir-us-carin-bb.value-set.C4BBAdjudicationCategoryDiscriminator
+   hl7-fhir-us-carin-bb.value-set.AMACPTCMSHCPCSProcedureCodes
+   hl7-fhir-r4-core.Money
+   hl7-fhir-us-carin-bb.value-set.C4BBAdjudication
+   hl7-fhir-us-carin-bb.C4BB-ExplanationOfBenefit
+   hl7-fhir-r4-core.string
+   hl7-fhir-r4-core.date
+   hl7-fhir-r4-core.Quantity
+   hl7-fhir-us-carin-bb.value-set.C4BBClaimProfessionalAndNonClinicianCareTeamRole
+   hl7-fhir-us-carin-bb.value-set.C4BBProfessionalAndNonClinicianClaimSubType
+   hl7-fhir-us-carin-bb.C4BB-Organization
+   hl7-fhir-r4-core.Meta
+   hl7-fhir-r4-core.Reference
+   hl7-fhir-us-carin-bb.value-set.C4BBClaimProfessionalAndNonClinicianDiagnosisType
+   hl7-fhir-r4-core.positiveInt
+   hl7-fhir-r4-core.Element
+   hl7-fhir-us-carin-bb.value-set.C4BBPayerProviderContractingStatus
+   hl7-fhir-r4-core.CodeableConcept
+   hl7-fhir-us-carin-bb.value-set.CDCICD910CMDiagnosisCodes
+   hl7-fhir-us-carin-bb.value-set.C4BBProfessionalAndNonClinicianClaimType
+   hl7-fhir-us-carin-bb.value-set.AMACPTCMSHCPCSModifiers},
+ schema
+ {:zen.fhir/version "0.5.21-6",
+  :confirms
+  #{zen.fhir/Resource
+    hl7-fhir-us-carin-bb.C4BB-ExplanationOfBenefit/schema},
+  :zen/tags #{zen.fhir/profile-schema zen/schema},
+  :zen.fhir/profileUri
+  "http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-ExplanationOfBenefit-Professional-NonClinician",
+  :require #{:diagnosis :billablePeriod},
+  :type zen/map,
+  :zen/desc
+  "This profile is used for Explanation of Benefits (EOBs) based on claims submitted by physicians, suppliers and other non-institutional providers for professional and vision services. These services may be rendered in inpatient or outpatient, including office locations. The claims data is based on the professional claim form 1500, submission standards adopted by the Department of Health and Human Services as form CMS-1500.",
+  :keys
+  {:diagnosis
+   {:type zen/vector,
+    :every
+    {:confirms #{hl7-fhir-r4-core.BackboneElement/schema},
+     :type zen/map,
+     :keys
+     {:sequence {:confirms #{hl7-fhir-r4-core.positiveInt/schema}},
+      :_sequence {:confirms #{hl7-fhir-r4-core.Element/schema}},
+      :diagnosis
+      {:fhir/polymorphic true,
+       :type zen/map,
+       :keys
+       {:CodeableConcept
+        {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema}}},
+       :fhir/flags #{:MS},
+       :zen.fhir/value-set
+       {:symbol
+        hl7-fhir-us-carin-bb.value-set.CDCICD910CMDiagnosisCodes/value-set,
+        :strength :required}},
+      :type
+      {:type zen/vector,
+       :every
+       {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+        :fhir/flags #{:MS},
+        :zen.fhir/value-set
+        {:symbol
+         hl7-fhir-us-carin-bb.value-set.C4BBClaimProfessionalAndNonClinicianDiagnosisType/value-set,
+         :strength :required}},
+       :minItems 1,
+       :maxItems 1}},
+     :require #{:type},
+     :fhir/flags #{:MS}},
+    :minItems 1},
+   :meta {:confirms #{hl7-fhir-r4-core.Meta/schema}},
+   :adjudication {:type zen/vector, :every {}, :maxItems 1},
+   :supportingInfo
+   {:slicing
+    {:slices
+     {"billingnetworkcontractingstatus"
+      {:schema
+       {:type zen/vector,
+        :maxItems 1,
+        :every
+        {:type zen/map,
+         :keys
+         {:category
+          {:match
+           {:coding
+            #{{:system
+               "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType",
+               :code "billingnetworkcontractingstatus"}}},
+           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}},
+          :code
+          {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS},
+           :zen.fhir/value-set
+           {:symbol
+            hl7-fhir-us-carin-bb.value-set.C4BBPayerProviderContractingStatus/value-set,
+            :strength :required}}},
+         :require #{:code}}},
+       :filter
+       {:engine :match,
+        :match
+        {:category
+         {:coding
+          #{{:system
+             "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType",
+             :code "billingnetworkcontractingstatus"}}}}}},
+      "performingnetworkcontractingstatus"
+      {:schema
+       {:type zen/vector,
+        :maxItems 1,
+        :every
+        {:type zen/map,
+         :keys
+         {:category
+          {:match
+           {:coding
+            #{{:system
+               "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType",
+               :code "performingnetworkcontractingstatus"}}},
+           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}},
+          :code
+          {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS},
+           :zen.fhir/value-set
+           {:symbol
+            hl7-fhir-us-carin-bb.value-set.C4BBPayerProviderContractingStatus/value-set,
+            :strength :required}}},
+         :require #{:code}}},
+       :filter
+       {:engine :match,
+        :match
+        {:category
+         {:coding
+          #{{:system
+             "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType",
+             :code "performingnetworkcontractingstatus"}}}}}},
+      "clmrecvddate"
+      {:schema
+       {:type zen/vector,
+        :maxItems 1,
+        :every
+        {:type zen/map,
+         :keys
+         {:category
+          {:match
+           {:coding
+            #{{:system
+               "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType",
+               :code "clmrecvddate"}}},
+           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}},
+          :timing
+          {:fhir/polymorphic true,
+           :type zen/map,
+           :keys
+           {:date {:confirms #{hl7-fhir-r4-core.date/schema}},
+            :_date {:confirms #{hl7-fhir-r4-core.Element/schema}}},
+           :fhir/flags #{:MS}}},
+         :require #{:timing}}},
+       :filter
+       {:engine :match,
+        :match
+        {:category
+         {:coding
+          #{{:system
+             "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType",
+             :code "clmrecvddate"}}}}}},
+      "servicefacility"
+      {:schema
+       {:type zen/vector,
+        :maxItems 1,
+        :every
+        {:type zen/map,
+         :keys
+         {:category
+          {:match
+           {:coding
+            #{{:system
+               "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType",
+               :code "servicefacility"}}},
+           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}},
+          :value
+          {:confirms
+           #{hl7-fhir-r4-core.Reference/schema zen.fhir/Reference},
+           :type zen/map,
+           :keys
+           {:Reference
+            {:confirms
+             #{hl7-fhir-r4-core.Reference/schema zen.fhir/Reference},
+             :fhir/flags #{:MS},
+             :zen.fhir/reference
+             {:refers
+              #{hl7-fhir-us-carin-bb.C4BB-Organization/schema}}}},
+           :require #{:Reference},
+           :zen.fhir/reference {:refers #{}}}}}},
+       :filter
+       {:engine :match,
+        :match
+        {:category
+         {:coding
+          #{{:system
+             "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType",
+             :code "servicefacility"}}}}}},
+      "medicalrecordnumber"
+      {:schema
+       {:type zen/vector,
+        :maxItems 1,
+        :every
+        {:type zen/map,
+         :keys
+         {:category
+          {:match
+           {:coding
+            #{{:system
+               "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType",
+               :code "medicalrecordnumber"}}},
+           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema}},
+          :value {:confirms #{hl7-fhir-r4-core.string/schema}},
+          :_value
+          {:confirms #{hl7-fhir-r4-core.Element/schema},
+           :type zen/map,
+           :keys
+           {:string
+            {:confirms #{hl7-fhir-r4-core.string/schema},
+             :fhir/flags #{:MS}},
+            :_string {:confirms #{hl7-fhir-r4-core.Element/schema}}},
+           :require #{:string}}}}},
+       :filter
+       {:engine :match,
+        :match
+        {:category
+         {:coding
+          #{{:system
+             "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType",
+             :code "medicalrecordnumber"}}}}}},
+      "patientaccountnumber"
+      {:schema
+       {:type zen/vector,
+        :maxItems 1,
+        :every
+        {:type zen/map,
+         :keys
+         {:category
+          {:match
+           {:coding
+            #{{:system
+               "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType",
+               :code "patientaccountnumber"}}},
+           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema}},
+          :value {:confirms #{hl7-fhir-r4-core.string/schema}},
+          :_value
+          {:confirms #{hl7-fhir-r4-core.Element/schema},
+           :type zen/map,
+           :keys
+           {:string
+            {:confirms #{hl7-fhir-r4-core.string/schema},
+             :fhir/flags #{:MS}},
+            :_string {:confirms #{hl7-fhir-r4-core.Element/schema}}},
+           :require #{:string}}}}},
+       :filter
+       {:engine :match,
+        :match
+        {:category
+         {:coding
+          #{{:system
+             "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType",
+             :code "patientaccountnumber"}}}}}}}},
+    :type zen/vector,
+    :every {:confirms #{hl7-fhir-r4-core.BackboneElement/schema}}},
+   :item
+   {:type zen/vector,
+    :every
+    {:confirms #{hl7-fhir-r4-core.BackboneElement/schema},
+     :type zen/map,
+     :keys
+     {:productOrService
+      {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+       :fhir/flags #{:MS},
+       :zen.fhir/value-set
+       {:symbol
+        hl7-fhir-us-carin-bb.value-set.AMACPTCMSHCPCSProcedureCodes/value-set,
+        :strength :required}},
+      :modifier
+      {:type zen/vector,
+       :every
+       {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+        :fhir/flags #{:MS},
+        :zen.fhir/value-set
+        {:symbol
+         hl7-fhir-us-carin-bb.value-set.AMACPTCMSHCPCSModifiers/value-set,
+         :strength :required}}},
+      :serviced #:fhir{:polymorphic true},
+      :location
+      {:type zen/map,
+       :keys
+       {:CodeableConcept
+        {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+         :zen.fhir/value-set
+         {:symbol
+          hl7-fhir-us-carin-bb.value-set.CMSPlaceofServiceCodes/value-set,
+          :strength :required}}},
+       :require #{:CodeableConcept}},
+      :quantity {:confirms #{hl7-fhir-r4-core.Quantity/schema}},
+      :adjudication
+      {:slicing
+       {:slices
+        {"denialreason"
+         {:schema
+          {:type zen/vector,
+           :maxItems 1,
+           :every
+           {:type zen/map,
+            :keys
+            {:category
+             {:match
+              {:coding
+               #{{:system
+                  "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBAdjudicationDiscriminator",
+                  :code "denialreason"}}},
+              :confirms #{hl7-fhir-r4-core.CodeableConcept/schema}},
+             :reason
+             {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+              :fhir/flags #{:MS},
+              :zen.fhir/value-set
+              {:symbol
+               hl7-fhir-us-carin-bb.value-set.X12ClaimAdjustmentReasonCodesCMSRemittanceAdviceRemarkCodes/value-set,
+               :strength :required}}},
+            :require #{:reason}}},
+          :filter
+          {:engine :match,
+           :match
+           {:category
+            {:coding
+             #{{:system
+                "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBAdjudicationDiscriminator",
+                :code "denialreason"}}}}}},
+         "allowedunits"
+         {:schema
+          {:type zen/vector,
+           :maxItems 1,
+           :every
+           {:type zen/map,
+            :keys
+            {:category
+             {:match
+              {:coding
+               #{{:system
+                  "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBAdjudicationDiscriminator",
+                  :code "allowedunits"}}},
+              :confirms #{hl7-fhir-r4-core.CodeableConcept/schema}}}}},
+          :filter
+          {:engine :match,
+           :match
+           {:category
+            {:coding
+             #{{:system
+                "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBAdjudicationDiscriminator",
+                :code "allowedunits"}}}}}}}},
+       :type zen/vector,
+       :every
+       {:confirms #{hl7-fhir-r4-core.BackboneElement/schema},
+        :type zen/map,
+        :keys
+        {:category
+         {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+          :zen.fhir/value-set
+          {:symbol
+           hl7-fhir-us-carin-bb.value-set.C4BBAdjudicationCategoryDiscriminator/value-set,
+           :strength :required}}},
+        :fhir/flags #{:MS}},
+       :minItems 2}},
+     :require #{:adjudication :serviced}}},
+   :type
+   {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+    :zen.fhir/value-set
+    {:symbol
+     hl7-fhir-us-carin-bb.value-set.C4BBProfessionalAndNonClinicianClaimType/value-set,
+     :strength :required}},
+   :total
+   {:slicing {:slices {}},
+    :type zen/vector,
+    :every
+    {:confirms #{hl7-fhir-r4-core.BackboneElement/schema},
+     :type zen/map,
+     :keys
+     {:category
+      {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+       :fhir/flags #{:MS},
+       :zen.fhir/value-set
+       {:symbol
+        hl7-fhir-us-carin-bb.value-set.C4BBAdjudication/value-set,
+        :strength :extensible}},
+      :amount {:confirms #{hl7-fhir-r4-core.Money/schema}}}}},
+   :billablePeriod {:confirms #{hl7-fhir-r4-core.Period/schema}},
+   :subType
+   {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+    :zen.fhir/value-set
+    {:symbol
+     hl7-fhir-us-carin-bb.value-set.C4BBProfessionalAndNonClinicianClaimSubType/value-set,
+     :strength :required}},
+   :careTeam
+   {:type zen/vector,
+    :every
+    {:confirms #{hl7-fhir-r4-core.BackboneElement/schema},
+     :type zen/map,
+     :keys
+     {:role
+      {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+       :zen.fhir/value-set
+       {:symbol
+        hl7-fhir-us-carin-bb.value-set.C4BBClaimProfessionalAndNonClinicianCareTeamRole/value-set,
+        :strength :required}},
+      :qualification
+      {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+       :fhir/flags #{:MS}}},
+     :require #{:role}}}},
+  :zen.fhir/type "ExplanationOfBenefit"}}

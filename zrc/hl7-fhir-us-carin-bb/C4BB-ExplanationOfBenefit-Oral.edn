@@ -1,0 +1,568 @@
+{ns hl7-fhir-us-carin-bb.C4BB-ExplanationOfBenefit-Oral,
+ import
+ #{hl7-fhir-us-carin-bb.value-set.X12ClaimAdjustmentReasonCodesCMSRemittanceAdviceRemarkCodes
+   hl7-fhir-r4-core.BackboneElement
+   zen.fhir
+   hl7-fhir-us-carin-bb.value-set.C4BBAdjudicationCategoryDiscriminator
+   hl7-fhir-r4-core.Money
+   hl7-fhir-r4-core.boolean
+   hl7-fhir-us-carin-bb.C4BB-ExplanationOfBenefit
+   hl7-fhir-r4-core.string
+   hl7-fhir-us-carin-bb.value-set.ADAUniversalNumberingSystem
+   hl7-fhir-r4-core.date
+   hl7-fhir-us-carin-bb.value-set.C4BBSurfaceCodes
+   hl7-fhir-r4-core.Quantity
+   hl7-fhir-us-carin-bb.value-set.C4BBClaimProfessionalAndNonClinicianCareTeamRole
+   hl7-fhir-us-carin-bb.C4BB-Practitioner
+   hl7-fhir-us-carin-bb.C4BB-Organization
+   hl7-fhir-r4-core.Meta
+   hl7-fhir-r4-core.Reference
+   hl7-fhir-us-carin-bb.value-set.C4BBClaimProfessionalAndNonClinicianDiagnosisType
+   hl7-fhir-r4-core.positiveInt
+   hl7-fhir-r4-core.Element
+   hl7-fhir-us-carin-bb.value-set.C4BBPayerProviderContractingStatus
+   hl7-fhir-us-carin-bb.value-set.ADADentalProcedureCode
+   hl7-fhir-r4-core.CodeableConcept
+   hl7-fhir-us-carin-bb.value-set.CDCICD910CMDiagnosisCodes
+   hl7-fhir-us-carin-bb.value-set.OralBodySite
+   hl7-fhir-us-carin-bb.value-set.AMACPTCMSHCPCSModifiers},
+ schema
+ {:zen.fhir/version "0.5.21-6",
+  :confirms
+  #{zen.fhir/Resource
+    hl7-fhir-us-carin-bb.C4BB-ExplanationOfBenefit/schema},
+  :zen/tags #{zen.fhir/profile-schema zen/schema},
+  :zen.fhir/profileUri
+  "http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-ExplanationOfBenefit-Oral",
+  :require #{:supportingInfo},
+  :type zen/map,
+  :zen/desc
+  "This profile is used for Explanation of Benefits (EOBs) based on claims submitted by providers of oral services including Dental, Denture and Hygiene. The ADA Dental Claim Form provides a common format for reporting dental services to a patient's dental benefit plan.",
+  :keys
+  {:diagnosis
+   {:type zen/vector,
+    :every
+    {:confirms #{hl7-fhir-r4-core.BackboneElement/schema},
+     :type zen/map,
+     :keys
+     {:sequence {:confirms #{hl7-fhir-r4-core.positiveInt/schema}},
+      :_sequence {:confirms #{hl7-fhir-r4-core.Element/schema}},
+      :diagnosis
+      {:fhir/polymorphic true,
+       :type zen/map,
+       :keys
+       {:CodeableConcept
+        {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema}}},
+       :fhir/flags #{:MS},
+       :zen.fhir/value-set
+       {:symbol
+        hl7-fhir-us-carin-bb.value-set.CDCICD910CMDiagnosisCodes/value-set,
+        :strength :required}},
+      :type
+      {:type zen/vector,
+       :every
+       {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+        :fhir/flags #{:MS},
+        :zen.fhir/value-set
+        {:symbol
+         hl7-fhir-us-carin-bb.value-set.C4BBClaimProfessionalAndNonClinicianDiagnosisType/value-set,
+         :strength :required}},
+       :minItems 1,
+       :maxItems 1}},
+     :require #{:type},
+     :fhir/flags #{:MS}}},
+   :meta {:confirms #{hl7-fhir-r4-core.Meta/schema}},
+   :adjudication {:type zen/vector, :every {}, :maxItems 1},
+   :supportingInfo
+   {:slicing
+    {:slices
+     {"missingtoothnumber"
+      {:schema
+       {:type zen/vector,
+        :every
+        {:type zen/map,
+         :keys
+         {:category
+          {:match
+           {:coding
+            #{{:system
+               "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType",
+               :code "missingtoothnumber"}}},
+           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}},
+          :code
+          {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS},
+           :zen.fhir/value-set
+           {:symbol
+            hl7-fhir-us-carin-bb.value-set.ADAUniversalNumberingSystem/value-set,
+            :strength :required}}},
+         :require #{:code}}},
+       :filter
+       {:engine :match,
+        :match
+        {:category
+         {:coding
+          #{{:system
+             "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType",
+             :code "missingtoothnumber"}}}}}},
+      "clmrecvddate"
+      {:schema
+       {:type zen/vector,
+        :maxItems 1,
+        :every
+        {:type zen/map,
+         :keys
+         {:category
+          {:match
+           {:coding
+            #{{:system
+               "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType",
+               :code "clmrecvddate"}}},
+           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}},
+          :timing
+          {:fhir/polymorphic true,
+           :type zen/map,
+           :keys
+           {:date {:confirms #{hl7-fhir-r4-core.date/schema}},
+            :_date {:confirms #{hl7-fhir-r4-core.Element/schema}}},
+           :fhir/flags #{:MS}}},
+         :require #{:timing}}},
+       :filter
+       {:engine :match,
+        :match
+        {:category
+         {:coding
+          #{{:system
+             "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType",
+             :code "clmrecvddate"}}}}}},
+      "additionalbodysite"
+      {:schema
+       {:type zen/vector,
+        :every
+        {:type zen/map,
+         :keys
+         {:category
+          {:match
+           {:coding
+            #{{:system
+               "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType",
+               :code "additionalbodysite"}}},
+           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}},
+          :code
+          {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS},
+           :zen.fhir/value-set
+           {:symbol
+            hl7-fhir-us-carin-bb.value-set.OralBodySite/value-set,
+            :strength :required}}},
+         :require #{:code}}},
+       :filter
+       {:engine :match,
+        :match
+        {:category
+         {:coding
+          #{{:system
+             "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType",
+             :code "additionalbodysite"}}}}}},
+      "billingnetworkcontractingstatus"
+      {:schema
+       {:type zen/vector,
+        :minItems 1,
+        :maxItems 1,
+        :every
+        {:type zen/map,
+         :keys
+         {:category
+          {:match
+           {:coding
+            #{{:system
+               "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType",
+               :code "billingnetworkcontractingstatus"}}},
+           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}},
+          :code
+          {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS},
+           :zen.fhir/value-set
+           {:symbol
+            hl7-fhir-us-carin-bb.value-set.C4BBPayerProviderContractingStatus/value-set,
+            :strength :required}}},
+         :require #{:code}}},
+       :filter
+       {:engine :match,
+        :match
+        {:category
+         {:coding
+          #{{:system
+             "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType",
+             :code "billingnetworkcontractingstatus"}}}}}},
+      "performingnetworkcontractingstatus"
+      {:schema
+       {:type zen/vector,
+        :minItems 1,
+        :maxItems 1,
+        :every
+        {:type zen/map,
+         :keys
+         {:category
+          {:match
+           {:coding
+            #{{:system
+               "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType",
+               :code "performingnetworkcontractingstatus"}}},
+           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}},
+          :code
+          {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS},
+           :zen.fhir/value-set
+           {:symbol
+            hl7-fhir-us-carin-bb.value-set.C4BBPayerProviderContractingStatus/value-set,
+            :strength :required}}},
+         :require #{:code}}},
+       :filter
+       {:engine :match,
+        :match
+        {:category
+         {:coding
+          #{{:system
+             "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType",
+             :code "performingnetworkcontractingstatus"}}}}}},
+      "medicalrecordnumber"
+      {:schema
+       {:type zen/vector,
+        :maxItems 1,
+        :every
+        {:type zen/map,
+         :keys
+         {:category
+          {:match
+           {:coding
+            #{{:system
+               "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType",
+               :code "medicalrecordnumber"}}},
+           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema}},
+          :value {:confirms #{hl7-fhir-r4-core.string/schema}},
+          :_value
+          {:confirms #{hl7-fhir-r4-core.Element/schema},
+           :type zen/map,
+           :keys
+           {:string
+            {:confirms #{hl7-fhir-r4-core.string/schema},
+             :fhir/flags #{:MS}},
+            :_string {:confirms #{hl7-fhir-r4-core.Element/schema}}},
+           :require #{:string}}}}},
+       :filter
+       {:engine :match,
+        :match
+        {:category
+         {:coding
+          #{{:system
+             "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType",
+             :code "medicalrecordnumber"}}}}}},
+      "orthodontics"
+      {:schema
+       {:type zen/vector,
+        :maxItems 1,
+        :every
+        {:type zen/map,
+         :keys
+         {:category
+          {:match
+           {:coding
+            #{{:system
+               "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType",
+               :code "orthodontics"}}},
+           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}},
+          :code {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema}},
+          :timingDate
+          {:confirms #{hl7-fhir-r4-core.date/schema},
+           :zen/desc "Orthodontics appliance application date (200)"},
+          :_timingDate {:confirms #{hl7-fhir-r4-core.Element/schema}},
+          :value
+          {:type zen/map,
+           :keys
+           {:Quantity
+            {:confirms #{hl7-fhir-r4-core.Quantity/schema},
+             :zen/desc "Total number of months for orthodontia"}},
+           :require #{:Quantity}}}}},
+       :filter
+       {:engine :match,
+        :match
+        {:category
+         {:coding
+          #{{:system
+             "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType",
+             :code "orthodontics"}}}}}},
+      "prosthesis"
+      {:schema
+       {:type zen/vector,
+        :maxItems 1,
+        :every
+        {:type zen/map,
+         :keys
+         {:category
+          {:match
+           {:coding
+            #{{:system
+               "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType",
+               :code "prosthesis"}}},
+           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}},
+          :timingDate
+          {:confirms #{hl7-fhir-r4-core.date/schema},
+           :zen/desc "Date of prior prosthesis replacement  (203)"},
+          :_timingDate {:confirms #{hl7-fhir-r4-core.Element/schema}},
+          :value
+          {:type zen/map,
+           :keys
+           {:boolean
+            {:confirms #{hl7-fhir-r4-core.boolean/schema},
+             :zen/desc "Prosthesis replacement indicator (202"},
+            :_boolean {:confirms #{hl7-fhir-r4-core.Element/schema}}},
+           :require #{:boolean}}}}},
+       :filter
+       {:engine :match,
+        :match
+        {:category
+         {:coding
+          #{{:system
+             "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType",
+             :code "prosthesis"}}}}}},
+      "servicefacility"
+      {:schema
+       {:type zen/vector,
+        :maxItems 1,
+        :every
+        {:type zen/map,
+         :keys
+         {:category
+          {:match
+           {:coding
+            #{{:system
+               "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType",
+               :code "servicefacility"}}},
+           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}},
+          :value
+          {:confirms
+           #{hl7-fhir-r4-core.Reference/schema zen.fhir/Reference},
+           :type zen/map,
+           :keys
+           {:Reference
+            {:confirms
+             #{hl7-fhir-r4-core.Reference/schema zen.fhir/Reference},
+             :fhir/flags #{:MS},
+             :zen.fhir/reference
+             {:refers
+              #{hl7-fhir-us-carin-bb.C4BB-Organization/schema}}}},
+           :require #{:Reference},
+           :zen.fhir/reference {:refers #{}}}}}},
+       :filter
+       {:engine :match,
+        :match
+        {:category
+         {:coding
+          #{{:system
+             "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType",
+             :code "servicefacility"}}}}}},
+      "patientaccountnumber"
+      {:schema
+       {:type zen/vector,
+        :maxItems 1,
+        :every
+        {:type zen/map,
+         :keys
+         {:category
+          {:match
+           {:coding
+            #{{:system
+               "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType",
+               :code "patientaccountnumber"}}},
+           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema}},
+          :value {:confirms #{hl7-fhir-r4-core.string/schema}},
+          :_value
+          {:confirms #{hl7-fhir-r4-core.Element/schema},
+           :type zen/map,
+           :keys
+           {:string
+            {:confirms #{hl7-fhir-r4-core.string/schema},
+             :fhir/flags #{:MS}},
+            :_string {:confirms #{hl7-fhir-r4-core.Element/schema}}},
+           :require #{:string}}}}},
+       :filter
+       {:engine :match,
+        :match
+        {:category
+         {:coding
+          #{{:system
+             "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType",
+             :code "patientaccountnumber"}}}}}}}},
+    :type zen/vector,
+    :every {:confirms #{hl7-fhir-r4-core.BackboneElement/schema}},
+    :minItems 3},
+   :item
+   {:type zen/vector,
+    :every
+    {:confirms #{hl7-fhir-r4-core.BackboneElement/schema},
+     :type zen/map,
+     :keys
+     {:modifier
+      {:type zen/vector,
+       :every
+       {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+        :fhir/flags #{:MS},
+        :zen.fhir/value-set
+        {:symbol
+         hl7-fhir-us-carin-bb.value-set.AMACPTCMSHCPCSModifiers/value-set,
+         :strength :required}}},
+      :adjudication
+      {:slicing
+       {:slices
+        {"denialreason"
+         {:schema
+          {:type zen/vector,
+           :maxItems 1,
+           :every
+           {:type zen/map,
+            :keys
+            {:category
+             {:match
+              {:coding
+               #{{:system
+                  "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBAdjudicationDiscriminator",
+                  :code "denialreason"}}},
+              :confirms #{hl7-fhir-r4-core.CodeableConcept/schema}},
+             :reason
+             {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+              :fhir/flags #{:MS},
+              :zen.fhir/value-set
+              {:symbol
+               hl7-fhir-us-carin-bb.value-set.X12ClaimAdjustmentReasonCodesCMSRemittanceAdviceRemarkCodes/value-set,
+               :strength :required}}},
+            :require #{:reason}}},
+          :filter
+          {:engine :match,
+           :match
+           {:category
+            {:coding
+             #{{:system
+                "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBAdjudicationDiscriminator",
+                :code "denialreason"}}}}}},
+         "allowedunits"
+         {:schema
+          {:type zen/vector,
+           :maxItems 1,
+           :every
+           {:type zen/map,
+            :keys
+            {:category
+             {:match
+              {:coding
+               #{{:system
+                  "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBAdjudicationDiscriminator",
+                  :code "allowedunits"}}},
+              :confirms #{hl7-fhir-r4-core.CodeableConcept/schema}}}}},
+          :filter
+          {:engine :match,
+           :match
+           {:category
+            {:coding
+             #{{:system
+                "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBAdjudicationDiscriminator",
+                :code "allowedunits"}}}}}}}},
+       :type zen/vector,
+       :every
+       {:confirms #{hl7-fhir-r4-core.BackboneElement/schema},
+        :type zen/map,
+        :keys
+        {:category
+         {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+          :zen.fhir/value-set
+          {:symbol
+           hl7-fhir-us-carin-bb.value-set.C4BBAdjudicationCategoryDiscriminator/value-set,
+           :strength :required}}},
+        :fhir/flags #{:MS}},
+       :minItems 2},
+      :serviced #:fhir{:polymorphic true},
+      :subSite
+      {:type zen/vector,
+       :every
+       {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+        :zen.fhir/value-set
+        {:symbol
+         hl7-fhir-us-carin-bb.value-set.C4BBSurfaceCodes/value-set,
+         :strength :required},
+        :zen/desc "Tooth surface for all teeth on line"}},
+      :productOrService
+      {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+       :fhir/flags #{:MS},
+       :zen.fhir/value-set
+       {:symbol
+        hl7-fhir-us-carin-bb.value-set.ADADentalProcedureCode/value-set,
+        :strength :required}},
+      :_informationSequence
+      {:type zen/vector,
+       :every {:confirms #{hl7-fhir-r4-core.Element/schema}}},
+      :informationSequence
+      {:type zen/vector,
+       :every
+       {:confirms #{hl7-fhir-r4-core.positiveInt/schema},
+        :fhir/flags #{:MS}}},
+      :bodySite
+      {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+       :zen.fhir/value-set
+       {:symbol hl7-fhir-us-carin-bb.value-set.OralBodySite/value-set,
+        :strength :required},
+       :zen/desc "First tooth number or oral cavity code"},
+      :quantity {:confirms #{hl7-fhir-r4-core.Quantity/schema}},
+      :location
+      {:fhir/polymorphic true,
+       :type zen/map,
+       :keys
+       {:CodeableConcept
+        {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema}}},
+       :fhir/flags #{:MS}}},
+     :require #{:adjudication :location}}},
+   :type
+   {:match
+    {:coding
+     #{{:system "http://terminology.hl7.org/CodeSystem/claim-type",
+        :code "oral"}}},
+    :confirms #{hl7-fhir-r4-core.CodeableConcept/schema}},
+   :total
+   {:slicing {:slices {}},
+    :type zen/vector,
+    :every
+    {:confirms #{hl7-fhir-r4-core.BackboneElement/schema},
+     :type zen/map,
+     :keys
+     {:category
+      {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+       :fhir/flags #{:MS}},
+      :amount {:confirms #{hl7-fhir-r4-core.Money/schema}}}}},
+   :provider
+   {:confirms #{hl7-fhir-r4-core.Reference/schema zen.fhir/Reference},
+    :zen.fhir/reference
+    {:refers #{hl7-fhir-us-carin-bb.C4BB-Practitioner/schema}}},
+   :careTeam
+   {:type zen/vector,
+    :every
+    {:confirms #{hl7-fhir-r4-core.BackboneElement/schema},
+     :type zen/map,
+     :keys
+     {:role
+      {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+       :zen.fhir/value-set
+       {:symbol
+        hl7-fhir-us-carin-bb.value-set.C4BBClaimProfessionalAndNonClinicianCareTeamRole/value-set,
+        :strength :required}},
+      :qualification
+      {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+       :fhir/flags #{:MS}}},
+     :require #{:role}}}},
+  :zen.fhir/type "ExplanationOfBenefit"}}

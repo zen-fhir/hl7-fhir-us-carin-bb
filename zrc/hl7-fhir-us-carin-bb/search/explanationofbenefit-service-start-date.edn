@@ -1,0 +1,23 @@
+{ns
+ hl7-fhir-us-carin-bb.search.explanationofbenefit-service-start-date,
+ import #{zen.fhir},
+ search
+ {:zen/tags #{zen.fhir/search},
+  :fhir/id "explanationofbenefit-service-start-date",
+  :fhir/url
+  "http://hl7.org/fhir/us/carin-bb/SearchParameter/explanationofbenefit-service-start-date",
+  :fhir/type "date",
+  :name "service-start-date",
+  :expr
+  {:ExplanationOfBenefit
+   {:knife
+    [["billablePeriod" "start"]
+     ["item" "servicedDate"]
+     ["item" "servicedPeriod" "start"]],
+    :jsonpath
+    ["$.\"billablePeriod\".\"start\"[*]"
+     "$.\"item\".\"servicedDate\"[*]"
+     "$.\"item\".\"servicedPeriod\".\"start\"[*]"],
+    :data-types #{},
+    :template :date,
+    :sql {:where [:or]}}}}}

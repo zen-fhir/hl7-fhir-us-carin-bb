@@ -1,0 +1,19 @@
+{ns hl7-fhir-us-carin-bb.value-set.C4BBTotalCategoryDiscriminator,
+ import #{zen.fhir},
+ value-set
+ {:zen/tags #{zen.fhir/value-set},
+  :zen/desc
+  "Used as the discriminator for total.category for the CARIN IG for Blue Button®",
+  :zen.fhir/version "0.5.21-6",
+  :fhir/code-systems
+  #{{:fhir/url
+     "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBPayerAdjudicationStatus",
+     :zen.fhir/content :bundled}
+    {:fhir/url "http://terminology.hl7.org/CodeSystem/adjudication",
+     :zen.fhir/content :bundled}
+    {:fhir/url
+     "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBAdjudication",
+     :zen.fhir/content :bundled}},
+  :uri
+  "http://hl7.org/fhir/us/carin-bb/ValueSet/C4BBTotalCategoryDiscriminator",
+  :version "1.2.0"}}

@@ -1,0 +1,14 @@
+{ns hl7-fhir-us-carin-bb.value-set.C4BBInstitutionalClaimSubType,
+ import #{zen.fhir},
+ value-set
+ {:zen/tags #{zen.fhir/value-set},
+  :zen/desc
+  "Indicates if institutional ExplanationOfBenefit is inpatient or outpatient.",
+  :zen.fhir/version "0.5.21-6",
+  :fhir/code-systems
+  #{{:fhir/url
+     "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBInstitutionalClaimSubType",
+     :zen.fhir/content :bundled}},
+  :uri
+  "http://hl7.org/fhir/us/carin-bb/ValueSet/C4BBInstitutionalClaimSubType",
+  :version "1.2.0"}}

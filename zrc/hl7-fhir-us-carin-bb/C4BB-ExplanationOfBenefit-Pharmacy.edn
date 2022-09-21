@@ -1,0 +1,463 @@
+{ns hl7-fhir-us-carin-bb.C4BB-ExplanationOfBenefit-Pharmacy,
+ import
+ #{hl7-fhir-r4-core.BackboneElement
+   hl7-fhir-us-carin-bb.value-set.NCPDPBrandGenericIndicator
+   zen.fhir
+   hl7-fhir-us-carin-bb.value-set.C4BBAdjudicationCategoryDiscriminator
+   hl7-fhir-r4-core.Money
+   hl7-fhir-us-carin-bb.value-set.NCPDPRejectCode
+   hl7-fhir-us-carin-bb.value-set.FDANationalDrugCode
+   hl7-fhir-us-carin-bb.value-set.C4BBClaimPharmacyTeamRole
+   hl7-fhir-r4-core.dateTime
+   hl7-fhir-us-carin-bb.C4BB-ExplanationOfBenefit
+   hl7-fhir-r4-core.string
+   hl7-fhir-r4-core.date
+   hl7-fhir-us-carin-bb.value-set.NCPDPPrescriptionOriginCode
+   hl7-fhir-r4-core.Quantity
+   hl7-fhir-us-carin-bb.value-set.FDANDCOrCompound
+   hl7-fhir-us-carin-bb.value-set.NCPDPDispensedAsWrittenOrProductSelectionCode
+   hl7-fhir-r4-core.Meta
+   hl7-fhir-us-carin-bb.value-set.C4BBTotalCategoryDiscriminator
+   hl7-fhir-r4-core.Element
+   hl7-fhir-us-carin-bb.value-set.C4BBPayerProviderContractingStatus
+   hl7-fhir-r4-core.CodeableConcept
+   hl7-fhir-us-carin-bb.value-set.NCPDPCompoundCode},
+ schema
+ {:zen.fhir/version "0.5.21-6",
+  :confirms
+  #{zen.fhir/Resource
+    hl7-fhir-us-carin-bb.C4BB-ExplanationOfBenefit/schema},
+  :zen/tags #{zen.fhir/profile-schema zen/schema},
+  :zen.fhir/profileUri
+  "http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-ExplanationOfBenefit-Pharmacy",
+  :require #{:supportingInfo},
+  :type zen/map,
+  :zen/desc
+  "This profile is used for Explanation of Benefits (EOBs) based on claims submitted by retail pharmacies.\nThe claims data is based on submission standards adopted by the Department of Health and Human Services defined by NCPDP (National Council for Prescription Drug Program)",
+  :keys
+  {:_created {:confirms #{hl7-fhir-r4-core.Element/schema}},
+   :processNote
+   {:type zen/vector,
+    :every
+    {:confirms #{hl7-fhir-r4-core.BackboneElement/schema},
+     :type zen/map,
+     :keys
+     {:text
+      {:confirms #{hl7-fhir-r4-core.string/schema},
+       :fhir/flags #{:MS}},
+      :_text {:confirms #{hl7-fhir-r4-core.Element/schema}}}}},
+   :meta {:confirms #{hl7-fhir-r4-core.Meta/schema}},
+   :adjudication {:type zen/vector, :every {}, :maxItems 1},
+   :supportingInfo
+   {:slicing
+    {:slices
+     {"dawcode"
+      {:schema
+       {:type zen/vector,
+        :minItems 1,
+        :maxItems 1,
+        :every
+        {:type zen/map,
+         :keys
+         {:category
+          {:match
+           {:coding
+            #{{:system
+               "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType",
+               :code "dawcode"}}},
+           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}},
+          :code
+          {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS},
+           :zen.fhir/value-set
+           {:symbol
+            hl7-fhir-us-carin-bb.value-set.NCPDPDispensedAsWrittenOrProductSelectionCode/value-set,
+            :strength :required}}},
+         :require #{:code}}},
+       :filter
+       {:engine :match,
+        :match
+        {:category
+         {:coding
+          #{{:system
+             "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType",
+             :code "dawcode"}}}}}},
+      "clmrecvddate"
+      {:schema
+       {:type zen/vector,
+        :maxItems 1,
+        :every
+        {:type zen/map,
+         :keys
+         {:category
+          {:match
+           {:coding
+            #{{:system
+               "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType",
+               :code "clmrecvddate"}}},
+           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}},
+          :timing
+          {:fhir/polymorphic true,
+           :type zen/map,
+           :keys
+           {:date {:confirms #{hl7-fhir-r4-core.date/schema}},
+            :_date {:confirms #{hl7-fhir-r4-core.Element/schema}}},
+           :fhir/flags #{:MS}}},
+         :require #{:timing}}},
+       :filter
+       {:engine :match,
+        :match
+        {:category
+         {:coding
+          #{{:system
+             "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType",
+             :code "clmrecvddate"}}}}}},
+      "rxoriginCode"
+      {:schema
+       {:type zen/vector,
+        :maxItems 1,
+        :every
+        {:type zen/map,
+         :keys
+         {:category
+          {:match
+           {:coding
+            #{{:system
+               "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType",
+               :code "rxorigincode"}}},
+           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}},
+          :code
+          {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS},
+           :zen.fhir/value-set
+           {:symbol
+            hl7-fhir-us-carin-bb.value-set.NCPDPPrescriptionOriginCode/value-set,
+            :strength :required}}},
+         :require #{:code}}},
+       :filter
+       {:engine :match,
+        :match
+        {:category
+         {:coding
+          #{{:system
+             "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType",
+             :code "rxorigincode"}}}}}},
+      "billingnetworkcontractingstatus"
+      {:schema
+       {:type zen/vector,
+        :maxItems 1,
+        :every
+        {:type zen/map,
+         :keys
+         {:category
+          {:match
+           {:coding
+            #{{:system
+               "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType",
+               :code "billingnetworkcontractingstatus"}}},
+           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}},
+          :code
+          {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS},
+           :zen.fhir/value-set
+           {:symbol
+            hl7-fhir-us-carin-bb.value-set.C4BBPayerProviderContractingStatus/value-set,
+            :strength :required}}},
+         :require #{:code}}},
+       :filter
+       {:engine :match,
+        :match
+        {:category
+         {:coding
+          #{{:system
+             "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType",
+             :code "billingnetworkcontractingstatus"}}}}}},
+      "dayssupply"
+      {:schema
+       {:type zen/vector,
+        :minItems 1,
+        :maxItems 1,
+        :every
+        {:type zen/map,
+         :keys
+         {:category
+          {:match
+           {:coding
+            #{{:system
+               "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType",
+               :code "dayssupply"}}},
+           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}},
+          :value
+          {:fhir/polymorphic true,
+           :type zen/map,
+           :keys
+           {:Quantity {:confirms #{hl7-fhir-r4-core.Quantity/schema}}},
+           :fhir/flags #{:MS}}},
+         :require #{:value}}},
+       :filter
+       {:engine :match,
+        :match
+        {:category
+         {:coding
+          #{{:system
+             "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType",
+             :code "dayssupply"}}}}}},
+      "refillsAuthorized"
+      {:schema
+       {:type zen/vector,
+        :minItems 1,
+        :maxItems 1,
+        :every
+        {:type zen/map,
+         :keys
+         {:category
+          {:match
+           {:coding
+            #{{:system
+               "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType",
+               :code "refillsauthorized"}}},
+           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}},
+          :value
+          {:fhir/polymorphic true,
+           :type zen/map,
+           :keys
+           {:Quantity {:confirms #{hl7-fhir-r4-core.Quantity/schema}}},
+           :fhir/flags #{:MS}}},
+         :require #{:value}}},
+       :filter
+       {:engine :match,
+        :match
+        {:category
+         {:coding
+          #{{:system
+             "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType",
+             :code "refillsauthorized"}}}}}},
+      "refillNum"
+      {:schema
+       {:type zen/vector,
+        :minItems 1,
+        :maxItems 1,
+        :every
+        {:type zen/map,
+         :keys
+         {:category
+          {:match
+           {:coding
+            #{{:system
+               "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType",
+               :code "refillnum"}}},
+           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}},
+          :value
+          {:fhir/polymorphic true,
+           :type zen/map,
+           :keys
+           {:Quantity {:confirms #{hl7-fhir-r4-core.Quantity/schema}}},
+           :fhir/flags #{:MS}}},
+         :require #{:value}}},
+       :filter
+       {:engine :match,
+        :match
+        {:category
+         {:coding
+          #{{:system
+             "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType",
+             :code "refillnum"}}}}}},
+      "brandgenericindicator"
+      {:schema
+       {:type zen/vector,
+        :maxItems 1,
+        :every
+        {:type zen/map,
+         :keys
+         {:category
+          {:match
+           {:coding
+            #{{:system
+               "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType",
+               :code "brandgenericindicator"}}},
+           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}},
+          :code
+          {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS},
+           :zen.fhir/value-set
+           {:symbol
+            hl7-fhir-us-carin-bb.value-set.NCPDPBrandGenericIndicator/value-set,
+            :strength :required}}},
+         :require #{:code}}},
+       :filter
+       {:engine :match,
+        :match
+        {:category
+         {:coding
+          #{{:system
+             "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType",
+             :code "brandgenericindicator"}}}}}},
+      "compoundcode"
+      {:schema
+       {:type zen/vector,
+        :maxItems 1,
+        :every
+        {:type zen/map,
+         :keys
+         {:category
+          {:match
+           {:coding
+            #{{:system
+               "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType",
+               :code "compoundcode"}}},
+           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS}},
+          :code
+          {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+           :fhir/flags #{:MS},
+           :zen.fhir/value-set
+           {:symbol
+            hl7-fhir-us-carin-bb.value-set.NCPDPCompoundCode/value-set,
+            :strength :required}}},
+         :require #{:code}}},
+       :filter
+       {:engine :match,
+        :match
+        {:category
+         {:coding
+          #{{:system
+             "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType",
+             :code "compoundcode"}}}}}}}},
+    :type zen/vector,
+    :every {:confirms #{hl7-fhir-r4-core.BackboneElement/schema}},
+    :minItems 5},
+   :payment
+   {:confirms #{hl7-fhir-r4-core.BackboneElement/schema},
+    :type zen/map,
+    :keys
+    {:date
+     {:confirms #{hl7-fhir-r4-core.date/schema}, :fhir/flags #{:MS}},
+     :_date {:confirms #{hl7-fhir-r4-core.Element/schema}}}},
+   :item
+   {:type zen/vector,
+    :every
+    {:confirms #{hl7-fhir-r4-core.BackboneElement/schema},
+     :type zen/map,
+     :keys
+     {:productOrService
+      {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+       :fhir/flags #{:MS},
+       :zen.fhir/value-set
+       {:symbol
+        hl7-fhir-us-carin-bb.value-set.FDANDCOrCompound/value-set,
+        :strength :required}},
+      :serviced #:fhir{:polymorphic true, :flags #{:MS}},
+      :quantity
+      {:confirms #{hl7-fhir-r4-core.Quantity/schema},
+       :fhir/flags #{:MS}},
+      :adjudication
+      {:slicing
+       {:slices
+        {"denialreason"
+         {:schema
+          {:type zen/vector,
+           :maxItems 1,
+           :every
+           {:type zen/map,
+            :keys
+            {:category
+             {:match
+              {:coding
+               #{{:system
+                  "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBAdjudicationDiscriminator",
+                  :code "denialreason"}}},
+              :confirms #{hl7-fhir-r4-core.CodeableConcept/schema}},
+             :reason
+             {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+              :fhir/flags #{:MS},
+              :zen.fhir/value-set
+              {:symbol
+               hl7-fhir-us-carin-bb.value-set.NCPDPRejectCode/value-set,
+               :strength :required}}},
+            :require #{:reason}}},
+          :filter
+          {:engine :match,
+           :match
+           {:category
+            {:coding
+             #{{:system
+                "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBAdjudicationDiscriminator",
+                :code "denialreason"}}}}}}}},
+       :type zen/vector,
+       :every
+       {:confirms #{hl7-fhir-r4-core.BackboneElement/schema},
+        :type zen/map,
+        :keys
+        {:category
+         {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+          :zen.fhir/value-set
+          {:symbol
+           hl7-fhir-us-carin-bb.value-set.C4BBAdjudicationCategoryDiscriminator/value-set,
+           :strength :required}}},
+        :fhir/flags #{:MS}},
+       :minItems 1},
+      :detail
+      {:type zen/vector,
+       :every
+       {:confirms #{hl7-fhir-r4-core.BackboneElement/schema},
+        :type zen/map,
+        :keys
+        {:productOrService
+         {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+          :fhir/flags #{:MS},
+          :zen.fhir/value-set
+          {:symbol
+           hl7-fhir-us-carin-bb.value-set.FDANationalDrugCode/value-set,
+           :strength :required}},
+         :quantity
+         {:confirms #{hl7-fhir-r4-core.Quantity/schema},
+          :fhir/flags #{:MS}}},
+        :fhir/flags #{:MS}}}},
+     :require #{:adjudication :serviced}}},
+   :type
+   {:match
+    {:coding
+     #{{:system "http://terminology.hl7.org/CodeSystem/claim-type",
+        :code "pharmacy"}}},
+    :confirms #{hl7-fhir-r4-core.CodeableConcept/schema}},
+   :created
+   {:confirms #{hl7-fhir-r4-core.dateTime/schema}, :fhir/flags #{:MS}},
+   :total
+   {:slicing {:slices {}},
+    :type zen/vector,
+    :every
+    {:confirms #{hl7-fhir-r4-core.BackboneElement/schema},
+     :type zen/map,
+     :keys
+     {:category
+      {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+       :fhir/flags #{:MS},
+       :zen.fhir/value-set
+       {:symbol
+        hl7-fhir-us-carin-bb.value-set.C4BBTotalCategoryDiscriminator/value-set,
+        :strength :extensible}},
+      :amount
+      {:confirms #{hl7-fhir-r4-core.Money/schema},
+       :fhir/flags #{:MS}}}}},
+   :careTeam
+   {:type zen/vector,
+    :every
+    {:confirms #{hl7-fhir-r4-core.BackboneElement/schema},
+     :type zen/map,
+     :keys
+     {:role
+      {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
+       :zen.fhir/value-set
+       {:symbol
+        hl7-fhir-us-carin-bb.value-set.C4BBClaimPharmacyTeamRole/value-set,
+        :strength :required}}},
+     :require #{:role}}}},
+  :zen.fhir/type "ExplanationOfBenefit"}}

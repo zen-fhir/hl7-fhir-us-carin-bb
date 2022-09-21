@@ -1,0 +1,14 @@
+{ns hl7-fhir-us-carin-bb.value-set.C4BBClaimIdentifierType,
+ import #{zen.fhir},
+ value-set
+ {:zen/tags #{zen.fhir/value-set},
+  :zen/desc
+  "Indicates that the claim identifier is that assigned by a payer for a claim received from a provider or subscriber",
+  :zen.fhir/version "0.5.21-6",
+  :fhir/code-systems
+  #{{:fhir/url
+     "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBIdentifierType",
+     :zen.fhir/content :bundled}},
+  :uri
+  "http://hl7.org/fhir/us/carin-bb/ValueSet/C4BBClaimIdentifierType",
+  :version "1.2.0"}}
