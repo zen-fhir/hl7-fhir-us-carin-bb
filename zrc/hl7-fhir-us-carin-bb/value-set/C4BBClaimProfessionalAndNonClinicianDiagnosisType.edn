@@ -5,7 +5,7 @@
  {:zen/tags #{zen.fhir/value-set},
   :zen/desc
   "Indicates if the professional and non-clinician diagnosis is principal or secondary",
-  :zen.fhir/version "0.5.21-10",
+  :zen.fhir/version "0.5.21-11",
   :fhir/code-systems
   #{{:fhir/url
      "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBClaimDiagnosisType",
