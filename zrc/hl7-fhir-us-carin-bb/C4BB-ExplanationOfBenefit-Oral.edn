@@ -4,6 +4,7 @@
    hl7-fhir-r4-core.BackboneElement
    zen.fhir
    hl7-fhir-us-carin-bb.value-set.C4BBAdjudicationCategoryDiscriminator
+   us-nlm-vsac.value-set.2.16.840.1.114222.4.11.1066
    hl7-fhir-r4-core.Money
    hl7-fhir-r4-core.boolean
    hl7-fhir-us-carin-bb.C4BB-ExplanationOfBenefit
@@ -27,7 +28,7 @@
    hl7-fhir-us-carin-bb.value-set.OralBodySite
    hl7-fhir-us-carin-bb.value-set.AMACPTCMSHCPCSModifiers},
  schema
- {:zen.fhir/version "0.5.21-14",
+ {:zen.fhir/version "0.5.22",
   :confirms
   #{zen.fhir/Resource
     hl7-fhir-us-carin-bb.C4BB-ExplanationOfBenefit/schema},
@@ -563,6 +564,10 @@
         :strength :required}},
       :qualification
       {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
-       :fhir/flags #{:MS}}},
+       :fhir/flags #{:MS},
+       :zen.fhir/value-set
+       {:symbol
+        us-nlm-vsac.value-set.2.16.840.1.114222.4.11.1066/value-set,
+        :strength :required}}},
      :require #{:role}}}},
   :zen.fhir/type "ExplanationOfBenefit"}}
