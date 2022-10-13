@@ -4,7 +4,7 @@
  {:zen/tags #{zen.fhir/value-set},
   :zen/desc
   "Indicates that the Provider has a contract with the Payer as of the effective date of service or admission.",
-  :zen.fhir/version "0.5.22-1",
+  :zen.fhir/version "0.5.23",
   :fhir/code-systems
   #{{:fhir/url
      "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBPayerAdjudicationStatus",
