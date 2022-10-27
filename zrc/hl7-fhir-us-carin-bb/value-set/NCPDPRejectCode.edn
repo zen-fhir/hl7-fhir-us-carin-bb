@@ -4,9 +4,16 @@
  {:zen/tags #{zen.fhir/value-set},
   :zen/desc
   "Code indicating the error encountered. Contains exception definitions for use when transaction processing cannot be completed. (NCPDP ECL 511-FB).\n\nLink to information about the code system - including how to obtain the content: [https://standards.ncpdp.org/Access-to-Standards.aspx](https://standards.ncpdp.org/Access-to-Standards.aspx)",
-  :zen.fhir/version "0.5.25-1",
+  :zen.fhir/version "0.5.26-4",
   :fhir/code-systems
   #{{:fhir/url "http://terminology.hl7.org/CodeSystem/NCPDPRejectCode",
      :zen.fhir/content :not-present}},
   :uri "http://hl7.org/fhir/us/carin-bb/ValueSet/NCPDPRejectCode",
-  :version "1.2.0"}}
+  :version "1.2.0",
+  :ftr
+  {:module "ig",
+   :source-url "node_modules/hl7.fhir.us.carin-bb",
+   :source-type :ig,
+   :ftr-path "ftr",
+   :zen/package-name "hl7-fhir-us-carin-bb",
+   :tag "init"}}}

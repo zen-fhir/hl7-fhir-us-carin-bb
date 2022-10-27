@@ -4,7 +4,7 @@
  {:zen/tags #{zen.fhir/value-set},
   :zen/desc
   "Values will be the NDC Codes when the Compound Code value is 0 or 1.  When the Compound Code value = 2, the value will be the literal, ‘compound’",
-  :zen.fhir/version "0.5.25-1",
+  :zen.fhir/version "0.5.26-4",
   :fhir/code-systems
   #{{:fhir/url "http://hl7.org/fhir/sid/ndc",
      :zen.fhir/content :not-present}
@@ -12,4 +12,11 @@
      "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBCompoundLiteral",
      :zen.fhir/content :bundled}},
   :uri "http://hl7.org/fhir/us/carin-bb/ValueSet/FDANDCOrCompound",
-  :version "1.2.0"}}
+  :version "1.2.0",
+  :ftr
+  {:module "ig",
+   :source-url "node_modules/hl7.fhir.us.carin-bb",
+   :source-type :ig,
+   :ftr-path "ftr",
+   :zen/package-name "hl7-fhir-us-carin-bb",
+   :tag "init"}}}
