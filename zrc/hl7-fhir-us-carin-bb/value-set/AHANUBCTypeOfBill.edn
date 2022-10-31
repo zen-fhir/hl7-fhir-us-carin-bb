@@ -4,7 +4,7 @@
  {:zen/tags #{zen.fhir/value-set},
   :zen/desc
   "The UB-04 Data File contains the complete set of NUBC codes. Every code in the range of possible codes is accounted for sequentially. There are no gaps because all used and unused codes are identified.\n\nThis code system consists of the following:\n\n*   FL 04 - Type of Bill Facility Codes\n*   FL 04 - Type of Bill Frequency Codes\n\nA code indicating the specific Type of Bill (TOB), e.g., hospital inpatient, outpatient, replacements, voids, etc. The first digit is a leading zero\\*. The fourth digit defines the frequency of the bill for the institutional and electronic professional claim.\n\nNote that with the advent of UB-04, the matrix methodology of constructing the first component of TOB codes according to digit position was abandoned in favor of specifying valid discrete codes. As a result, the first three digits in TOB have no underlying meaning.\n\nTo obtain the underlying code systems, please see information [here](https://www.nubc.org/subscription-information)",
-  :zen.fhir/version "0.5.26-5",
+  :zen.fhir/version "0.5.27",
   :fhir/code-systems
   #{{:fhir/url "https://www.nubc.org/CodeSystem/TypeOfBill",
      :zen.fhir/content :not-present}},
@@ -15,5 +15,4 @@
    :source-url "node_modules/hl7.fhir.us.carin-bb",
    :source-type :ig,
    :ftr-path "ftr",
-   :zen/package-name "hl7-fhir-us-carin-bb",
    :tag "init"}}}

@@ -3,7 +3,7 @@
  value-set
  {:zen/tags #{zen.fhir/value-set},
   :zen/desc "Indicates whether the claim / item was paid or denied.",
-  :zen.fhir/version "0.5.26-5",
+  :zen.fhir/version "0.5.27",
   :fhir/code-systems
   #{{:fhir/url
      "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBPayerAdjudicationStatus",
@@ -16,5 +16,4 @@
    :source-url "node_modules/hl7.fhir.us.carin-bb",
    :source-type :ig,
    :ftr-path "ftr",
-   :zen/package-name "hl7-fhir-us-carin-bb",
    :tag "init"}}}
