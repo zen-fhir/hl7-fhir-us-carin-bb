@@ -4,7 +4,7 @@
  {:zen/tags #{zen.fhir/value-set},
   :zen/desc
   "Code indicating the origin of the prescription. Indicates whether the prescription was transmitted as an electronic prescription, by phone, by fax, or as a written paper copy. (NCPDP ECL 419-DJ)\n\nLink to information about the code system - including how to obtain the content: [https://standards.ncpdp.org/Access-to-Standards.aspx](https://standards.ncpdp.org/Access-to-Standards.aspx)",
-  :zen.fhir/version "0.5.30-1",
+  :zen.fhir/version "0.5.31",
   :fhir/code-systems
   #{{:fhir/url
      "http://terminology.hl7.org/CodeSystem/NCPDPPrescriptionOriginCode",
@@ -14,7 +14,7 @@
   :version "1.2.0",
   :ftr
   {:module "ig",
-   :source-url "node_modules/hl7.fhir.us.carin-bb",
-   :source-type :ig,
+   :source-urls ["node_modules/hl7.fhir.us.carin-bb"],
+   :source-type :igs,
    :ftr-path "ftr",
    :tag "init"}}}
