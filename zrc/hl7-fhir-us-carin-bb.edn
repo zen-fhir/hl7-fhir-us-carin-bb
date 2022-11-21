@@ -1,74 +1,173 @@
 {ns hl7-fhir-us-carin-bb,
- import
- #{hl7-fhir-us-carin-bb.value-set.X12ClaimAdjustmentReasonCodesCMSRemittanceAdviceRemarkCodes
-   hl7-fhir-us-carin-bb.value-set.CMSPlaceofServiceCodes
-   hl7-fhir-us-carin-bb.value-set.AHANUBCRevenueCodes
-   hl7-fhir-us-carin-bb.value-set.C4BBPayerClaimPaymentStatusCode
-   hl7-fhir-us-carin-bb.value-set.C4BBPayerBenefitPaymentStatus
-   hl7-fhir-us-carin-bb.value-set.NCPDPBrandGenericIndicator
-   hl7-fhir-us-core
-   hl7-fhir-us-carin-bb.value-set.C4BBAdjudicationCategoryDiscriminator
-   hl7-fhir-us-carin-bb.value-set.AMACPTCMSHCPCSProcedureCodes
-   hl7-fhir-us-carin-bb.value-set.CMSMS3MAPAPRDRG
-   hl7-fhir-us-carin-bb.search.practitionerrole-organization
-   hl7-fhir-us-carin-bb.value-set.NCPDPRejectCode
-   hl7-fhir-us-carin-bb.value-set.FDANationalDrugCode
-   hl7-fhir-us-carin-bb.search.explanationofbenefit-care-team
-   hl7-fhir-us-carin-bb.value-set.AHANUBCPriorityTypeOfAdmissionOrVisit
-   hl7-fhir-r4-core
-   hl7-fhir-us-carin-bb.value-set.C4BBOrganizationIdentifierType
-   hl7-fhir-us-carin-bb.value-set.C4BBClaimPharmacyTeamRole
-   hl7-fhir-us-carin-bb.value-set.C4BBAdjudication
-   hl7-fhir-us-carin-bb.C4BB-ExplanationOfBenefit-Pharmacy
-   hl7-fhir-us-carin-bb.value-set.C4BBPayeeType
-   hl7-fhir-us-carin-bb.value-set.AHANUBCPatientDischargeStatus
-   hl7-fhir-us-carin-bb.C4BB-ExplanationOfBenefit
-   hl7-fhir-us-carin-bb.value-set.C4BBPatientIdentifierType
-   hl7-fhir-us-carin-bb.value-set.AHANUBCTypeOfBill
-   hl7-fhir-us-carin-bb.value-set.C4BBSupportingInfoType
-   hl7-fhir-us-carin-bb.value-set.ADAUniversalNumberingSystem
-   hl7-fhir-us-carin-bb.C4BB-ExplanationOfBenefit-Outpatient-Institutional
-   hl7-fhir-us-carin-bb.value-set.NCPDPPrescriptionOriginCode
-   hl7-fhir-us-carin-bb.value-set.C4BBSurfaceCodes
-   hl7-fhir-us-carin-bb.search.explanationofbenefit-provider
-   hl7-fhir-us-carin-bb.value-set.CMSICD910PCSProcedureCodes
-   hl7-fhir-us-carin-bb.value-set.C4BBClaimProfessionalAndNonClinicianCareTeamRole
-   hl7-fhir-us-carin-bb.value-set.C4BBClaimProcedureType
-   hl7-fhir-us-carin-bb.value-set.FDANDCOrCompound
-   hl7-fhir-us-carin-bb.search.explanationofbenefit-identifier
-   hl7-fhir-us-carin-bb.C4BB-Practitioner
-   hl7-fhir-us-carin-bb.value-set.C4BBClaimOutpatientInstitutionalDiagnosisType
-   hl7-fhir-us-carin-bb.value-set.C4BBClaimInstitutionalCareTeamRole
-   hl7-fhir-us-carin-bb.value-set.C4BBProfessionalAndNonClinicianClaimSubType
-   hl7-fhir-us-carin-bb.value-set.NCPDPDispensedAsWrittenOrProductSelectionCode
-   hl7-fhir-us-carin-bb.search.practitionerrole-practitioner
-   hl7-fhir-us-carin-bb.C4BB-Organization
-   hl7-fhir-us-carin-bb.value-set.C4BBRelatedClaimRelationshipCodes
-   hl7-fhir-us-carin-bb.search.explanationofbenefit-coverage
-   hl7-fhir-us-carin-bb.search.explanationofbenefit-service-date
-   hl7-fhir-us-carin-bb.value-set.C4BBClaimProfessionalAndNonClinicianDiagnosisType
-   hl7-fhir-us-carin-bb.value-set.C4BBTotalCategoryDiscriminator
-   hl7-fhir-us-carin-bb.value-set.AHANUBCPointOfOriginForAdmissionOrVisit
-   hl7-fhir-us-carin-bb.search.coverage-payor
-   hl7-fhir-us-carin-bb.search.explanationofbenefit-insurer
-   hl7-fhir-us-carin-bb.value-set.C4BBClaimIdentifierType
-   hl7-fhir-us-carin-bb.C4BB-ExplanationOfBenefit-Inpatient-Institutional
-   hl7-fhir-us-carin-bb.value-set.C4BBEOBInstitutionalProcedureCodes
-   hl7-fhir-us-carin-bb.value-set.C4BBPayerProviderContractingStatus
-   hl7-fhir-us-carin-bb.search.explanationofbenefit-service-start-date
-   hl7-fhir-us-carin-bb.value-set.ADADentalProcedureCode
-   hl7-fhir-us-carin-bb.C4BB-Patient
-   hl7-fhir-us-carin-bb.search.explanationofbenefit-type
-   hl7-fhir-us-carin-bb.value-set.CDCICD910CMDiagnosisCodes
-   hl7-fhir-us-carin-bb.value-set.OralBodySite
-   hl7-fhir-us-carin-bb.C4BB-ExplanationOfBenefit-Professional-NonClinician
-   hl7-fhir-us-carin-bb.C4BB-ExplanationOfBenefit-Oral
-   hl7-fhir-us-carin-bb.C4BB-Coverage
-   hl7-fhir-us-carin-bb.value-set.C4BBInstitutionalClaimSubType
-   hl7-fhir-us-carin-bb.value-set.AHANUBCPresentOnAdmission
-   hl7-fhir-us-carin-bb.value-set.C4BBProfessionalAndNonClinicianClaimType
-   hl7-fhir-us-carin-bb.value-set.NCPDPCompoundCode
-   hl7-fhir-us-carin-bb.value-set.AMACPTCMSHCPCSModifiers
-   hl7-fhir-us-carin-bb.value-set.C4BBClaimInpatientInstitutionalDiagnosisType
-   hl7-fhir-us-carin-bb.value-set.C4BBPractitionerIdentifierType
-   hl7-fhir-us-carin-bb.search.explanationofbenefit-patient}}
+ import #{zen.fhir hl7-fhir-us-core hl7-fhir-r4-core},
+ ig
+ {:zen/tags #{zen.fhir/ig},
+  :profiles profiles,
+  :value-sets value-sets,
+  :searches searches},
+ profiles
+ {:zen/tags #{zen.fhir/profiles},
+  :schemas
+  {"ExplanationOfBenefit"
+   {"http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-ExplanationOfBenefit-Oral"
+    #zen/quote hl7-fhir-us-carin-bb.C4BB-ExplanationOfBenefit-Oral/schema,
+    "http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-ExplanationOfBenefit-Inpatient-Institutional"
+    #zen/quote hl7-fhir-us-carin-bb.C4BB-ExplanationOfBenefit-Inpatient-Institutional/schema,
+    "http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-ExplanationOfBenefit"
+    #zen/quote hl7-fhir-us-carin-bb.C4BB-ExplanationOfBenefit/schema,
+    "http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-ExplanationOfBenefit-Outpatient-Institutional"
+    #zen/quote hl7-fhir-us-carin-bb.C4BB-ExplanationOfBenefit-Outpatient-Institutional/schema,
+    "http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-ExplanationOfBenefit-Professional-NonClinician"
+    #zen/quote hl7-fhir-us-carin-bb.C4BB-ExplanationOfBenefit-Professional-NonClinician/schema,
+    "http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-ExplanationOfBenefit-Pharmacy"
+    #zen/quote hl7-fhir-us-carin-bb.C4BB-ExplanationOfBenefit-Pharmacy/schema},
+   "Coverage"
+   {"http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-Coverage"
+    #zen/quote hl7-fhir-us-carin-bb.C4BB-Coverage/schema},
+   "Practitioner"
+   {"http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-Practitioner"
+    #zen/quote hl7-fhir-us-carin-bb.C4BB-Practitioner/schema},
+   "Organization"
+   {"http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-Organization"
+    #zen/quote hl7-fhir-us-carin-bb.C4BB-Organization/schema},
+   "Patient"
+   {"http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-Patient"
+    #zen/quote hl7-fhir-us-carin-bb.C4BB-Patient/schema}}},
+ searches
+ {:zen/tags #{zen.fhir/searches},
+  :searches
+  {"ExplanationOfBenefit_ServiceDate"
+   {"http://hl7.org/fhir/us/carin-bb/SearchParameter/explanationofbenefit-service-date"
+    #zen/quote hl7-fhir-us-carin-bb.search.explanationofbenefit-service-date/search},
+   "ExplanationOfBenefit_Identifier"
+   {"http://hl7.org/fhir/us/carin-bb/SearchParameter/explanationofbenefit-identifier"
+    #zen/quote hl7-fhir-us-carin-bb.search.explanationofbenefit-identifier/search},
+   "ExplanationOfBenefit_Type"
+   {"http://hl7.org/fhir/us/carin-bb/SearchParameter/explanationofbenefit-type"
+    #zen/quote hl7-fhir-us-carin-bb.search.explanationofbenefit-type/search},
+   "ExplanationOfBenefit_Insurer"
+   {"http://hl7.org/fhir/us/carin-bb/SearchParameter/explanationofbenefit-insurer"
+    #zen/quote hl7-fhir-us-carin-bb.search.explanationofbenefit-insurer/search},
+   "ExplanationOfBenefit_Organization"
+   {"http://hl7.org/fhir/us/carin-bb/SearchParameter/practitionerrole-organization"
+    #zen/quote hl7-fhir-us-carin-bb.search.practitionerrole-organization/search},
+   "ExplanationOfBenefit_Patient"
+   {"http://hl7.org/fhir/us/carin-bb/SearchParameter/explanationofbenefit-patient"
+    #zen/quote hl7-fhir-us-carin-bb.search.explanationofbenefit-patient/search},
+   "ExplanationOfBenefit_Coverage"
+   {"http://hl7.org/fhir/us/carin-bb/SearchParameter/explanationofbenefit-coverage"
+    #zen/quote hl7-fhir-us-carin-bb.search.explanationofbenefit-coverage/search},
+   "Coverage_Payor"
+   {"http://hl7.org/fhir/us/carin-bb/SearchParameter/coverage-payor"
+    #zen/quote hl7-fhir-us-carin-bb.search.coverage-payor/search},
+   "ExplanationOfBenefit_Practitioner"
+   {"http://hl7.org/fhir/us/carin-bb/SearchParameter/practitionerrole-practitioner"
+    #zen/quote hl7-fhir-us-carin-bb.search.practitionerrole-practitioner/search},
+   "ExplanationOfBenefit_Provider"
+   {"http://hl7.org/fhir/us/carin-bb/SearchParameter/explanationofbenefit-provider"
+    #zen/quote hl7-fhir-us-carin-bb.search.explanationofbenefit-provider/search},
+   "ExplanationOfBenefit_Careteam"
+   {"http://hl7.org/fhir/us/carin-bb/SearchParameter/explanationofbenefit-care-team"
+    #zen/quote hl7-fhir-us-carin-bb.search.explanationofbenefit-care-team/search},
+   "ExplanationOfBenefit_ServiceStartDate"
+   {"http://hl7.org/fhir/us/carin-bb/SearchParameter/explanationofbenefit-service-start-date"
+    #zen/quote hl7-fhir-us-carin-bb.search.explanationofbenefit-service-start-date/search}}},
+ value-sets
+ {:zen/tags #{zen.fhir/value-sets},
+  :value-sets
+  {"http://hl7.org/fhir/us/carin-bb/ValueSet/AMACPTCMSHCPCSProcedureCodes"
+   #zen/quote hl7-fhir-us-carin-bb.value-set.AMACPTCMSHCPCSProcedureCodes/value-set,
+   "http://hl7.org/fhir/us/carin-bb/ValueSet/C4BBClaimOutpatientInstitutionalDiagnosisType"
+   #zen/quote hl7-fhir-us-carin-bb.value-set.C4BBClaimOutpatientInstitutionalDiagnosisType/value-set,
+   "http://hl7.org/fhir/us/carin-bb/ValueSet/ADADentalProcedureCode"
+   #zen/quote hl7-fhir-us-carin-bb.value-set.ADADentalProcedureCode/value-set,
+   "http://hl7.org/fhir/us/carin-bb/ValueSet/FDANDCOrCompound"
+   #zen/quote hl7-fhir-us-carin-bb.value-set.FDANDCOrCompound/value-set,
+   "http://hl7.org/fhir/us/carin-bb/ValueSet/C4BBClaimProcedureType"
+   #zen/quote hl7-fhir-us-carin-bb.value-set.C4BBClaimProcedureType/value-set,
+   "http://hl7.org/fhir/us/carin-bb/ValueSet/NCPDPPrescriptionOriginCode"
+   #zen/quote hl7-fhir-us-carin-bb.value-set.NCPDPPrescriptionOriginCode/value-set,
+   "http://hl7.org/fhir/us/carin-bb/ValueSet/C4BBClaimPharmacyTeamRole"
+   #zen/quote hl7-fhir-us-carin-bb.value-set.C4BBClaimPharmacyTeamRole/value-set,
+   "http://hl7.org/fhir/us/carin-bb/ValueSet/AHANUBCTypeOfBill"
+   #zen/quote hl7-fhir-us-carin-bb.value-set.AHANUBCTypeOfBill/value-set,
+   "http://hl7.org/fhir/us/carin-bb/ValueSet/C4BBClaimIdentifierType"
+   #zen/quote hl7-fhir-us-carin-bb.value-set.C4BBClaimIdentifierType/value-set,
+   "http://hl7.org/fhir/us/carin-bb/ValueSet/AHANUBCPresentOnAdmission"
+   #zen/quote hl7-fhir-us-carin-bb.value-set.AHANUBCPresentOnAdmission/value-set,
+   "http://hl7.org/fhir/us/carin-bb/ValueSet/AHANUBCPatientDischargeStatus"
+   #zen/quote hl7-fhir-us-carin-bb.value-set.AHANUBCPatientDischargeStatus/value-set,
+   "http://hl7.org/fhir/us/carin-bb/ValueSet/CDCICD910CMDiagnosisCodes"
+   #zen/quote hl7-fhir-us-carin-bb.value-set.CDCICD910CMDiagnosisCodes/value-set,
+   "http://hl7.org/fhir/us/carin-bb/ValueSet/C4BBEOBInstitutionalProcedureCodes"
+   #zen/quote hl7-fhir-us-carin-bb.value-set.C4BBEOBInstitutionalProcedureCodes/value-set,
+   "http://hl7.org/fhir/us/carin-bb/ValueSet/C4BBSupportingInfoType"
+   #zen/quote hl7-fhir-us-carin-bb.value-set.C4BBSupportingInfoType/value-set,
+   "http://hl7.org/fhir/us/carin-bb/ValueSet/C4BBRelatedClaimRelationshipCodes"
+   #zen/quote hl7-fhir-us-carin-bb.value-set.C4BBRelatedClaimRelationshipCodes/value-set,
+   "http://hl7.org/fhir/us/carin-bb/ValueSet/C4BBAdjudicationCategoryDiscriminator"
+   #zen/quote hl7-fhir-us-carin-bb.value-set.C4BBAdjudicationCategoryDiscriminator/value-set,
+   "http://hl7.org/fhir/us/carin-bb/ValueSet/C4BBClaimInpatientInstitutionalDiagnosisType"
+   #zen/quote hl7-fhir-us-carin-bb.value-set.C4BBClaimInpatientInstitutionalDiagnosisType/value-set,
+   "http://hl7.org/fhir/us/carin-bb/ValueSet/NCPDPRejectCode"
+   #zen/quote hl7-fhir-us-carin-bb.value-set.NCPDPRejectCode/value-set,
+   "http://hl7.org/fhir/us/carin-bb/ValueSet/C4BBInstitutionalClaimSubType"
+   #zen/quote hl7-fhir-us-carin-bb.value-set.C4BBInstitutionalClaimSubType/value-set,
+   "http://hl7.org/fhir/us/carin-bb/ValueSet/C4BBAdjudication"
+   #zen/quote hl7-fhir-us-carin-bb.value-set.C4BBAdjudication/value-set,
+   "http://hl7.org/fhir/us/carin-bb/ValueSet/C4BBPatientIdentifierType"
+   #zen/quote hl7-fhir-us-carin-bb.value-set.C4BBPatientIdentifierType/value-set,
+   "http://hl7.org/fhir/us/carin-bb/ValueSet/C4BBSurfaceCodes"
+   #zen/quote hl7-fhir-us-carin-bb.value-set.C4BBSurfaceCodes/value-set,
+   "http://hl7.org/fhir/us/carin-bb/ValueSet/NCPDPCompoundCode"
+   #zen/quote hl7-fhir-us-carin-bb.value-set.NCPDPCompoundCode/value-set,
+   "http://hl7.org/fhir/us/carin-bb/ValueSet/CMSICD910PCSProcedureCodes"
+   #zen/quote hl7-fhir-us-carin-bb.value-set.CMSICD910PCSProcedureCodes/value-set,
+   "http://hl7.org/fhir/us/carin-bb/ValueSet/NCPDPBrandGenericIndicator"
+   #zen/quote hl7-fhir-us-carin-bb.value-set.NCPDPBrandGenericIndicator/value-set,
+   "http://hl7.org/fhir/us/carin-bb/ValueSet/C4BBPayerProviderContractingStatus"
+   #zen/quote hl7-fhir-us-carin-bb.value-set.C4BBPayerProviderContractingStatus/value-set,
+   "http://hl7.org/fhir/us/carin-bb/ValueSet/X12ClaimAdjustmentReasonCodesCMSRemittanceAdviceRemarkCodes"
+   #zen/quote hl7-fhir-us-carin-bb.value-set.X12ClaimAdjustmentReasonCodesCMSRemittanceAdviceRemarkCodes/value-set,
+   "http://hl7.org/fhir/us/carin-bb/ValueSet/ADAUniversalNumberingSystem"
+   #zen/quote hl7-fhir-us-carin-bb.value-set.ADAUniversalNumberingSystem/value-set,
+   "http://hl7.org/fhir/us/carin-bb/ValueSet/AHANUBCPointOfOriginForAdmissionOrVisit"
+   #zen/quote hl7-fhir-us-carin-bb.value-set.AHANUBCPointOfOriginForAdmissionOrVisit/value-set,
+   "http://hl7.org/fhir/us/carin-bb/ValueSet/AHANUBCPriorityTypeOfAdmissionOrVisit"
+   #zen/quote hl7-fhir-us-carin-bb.value-set.AHANUBCPriorityTypeOfAdmissionOrVisit/value-set,
+   "http://hl7.org/fhir/us/carin-bb/ValueSet/AHANUBCRevenueCodes"
+   #zen/quote hl7-fhir-us-carin-bb.value-set.AHANUBCRevenueCodes/value-set,
+   "http://hl7.org/fhir/us/carin-bb/ValueSet/FDANationalDrugCode"
+   #zen/quote hl7-fhir-us-carin-bb.value-set.FDANationalDrugCode/value-set,
+   "http://hl7.org/fhir/us/carin-bb/ValueSet/C4BBTotalCategoryDiscriminator"
+   #zen/quote hl7-fhir-us-carin-bb.value-set.C4BBTotalCategoryDiscriminator/value-set,
+   "http://hl7.org/fhir/us/carin-bb/ValueSet/CMSPlaceofServiceCodes"
+   #zen/quote hl7-fhir-us-carin-bb.value-set.CMSPlaceofServiceCodes/value-set,
+   "http://hl7.org/fhir/us/carin-bb/ValueSet/NCPDPDispensedAsWrittenOrProductSelectionCode"
+   #zen/quote hl7-fhir-us-carin-bb.value-set.NCPDPDispensedAsWrittenOrProductSelectionCode/value-set,
+   "http://hl7.org/fhir/us/carin-bb/ValueSet/C4BBProfessionalAndNonClinicianClaimSubType"
+   #zen/quote hl7-fhir-us-carin-bb.value-set.C4BBProfessionalAndNonClinicianClaimSubType/value-set,
+   "http://hl7.org/fhir/us/carin-bb/ValueSet/C4BBPayeeType"
+   #zen/quote hl7-fhir-us-carin-bb.value-set.C4BBPayeeType/value-set,
+   "http://hl7.org/fhir/us/carin-bb/ValueSet/C4BBClaimProfessionalAndNonClinicianCareTeamRole"
+   #zen/quote hl7-fhir-us-carin-bb.value-set.C4BBClaimProfessionalAndNonClinicianCareTeamRole/value-set,
+   "http://hl7.org/fhir/us/carin-bb/ValueSet/C4BBPayerBenefitPaymentStatus"
+   #zen/quote hl7-fhir-us-carin-bb.value-set.C4BBPayerBenefitPaymentStatus/value-set,
+   "http://hl7.org/fhir/us/carin-bb/ValueSet/OralBodySite"
+   #zen/quote hl7-fhir-us-carin-bb.value-set.OralBodySite/value-set,
+   "http://hl7.org/fhir/us/carin-bb/ValueSet/C4BBOrganizationIdentifierType"
+   #zen/quote hl7-fhir-us-carin-bb.value-set.C4BBOrganizationIdentifierType/value-set,
+   "http://hl7.org/fhir/us/carin-bb/ValueSet/C4BBClaimProfessionalAndNonClinicianDiagnosisType"
+   #zen/quote hl7-fhir-us-carin-bb.value-set.C4BBClaimProfessionalAndNonClinicianDiagnosisType/value-set,
+   "http://hl7.org/fhir/us/carin-bb/ValueSet/C4BBPayerClaimPaymentStatusCode"
+   #zen/quote hl7-fhir-us-carin-bb.value-set.C4BBPayerClaimPaymentStatusCode/value-set,
+   "http://hl7.org/fhir/us/carin-bb/ValueSet/CMSMS3MAPAPRDRG"
+   #zen/quote hl7-fhir-us-carin-bb.value-set.CMSMS3MAPAPRDRG/value-set,
+   "http://hl7.org/fhir/us/carin-bb/ValueSet/C4BBClaimInstitutionalCareTeamRole"
+   #zen/quote hl7-fhir-us-carin-bb.value-set.C4BBClaimInstitutionalCareTeamRole/value-set,
+   "http://hl7.org/fhir/us/carin-bb/ValueSet/C4BBPractitionerIdentifierType"
+   #zen/quote hl7-fhir-us-carin-bb.value-set.C4BBPractitionerIdentifierType/value-set,
+   "http://hl7.org/fhir/us/carin-bb/ValueSet/AMACPTCMSHCPCSModifiers"
+   #zen/quote hl7-fhir-us-carin-bb.value-set.AMACPTCMSHCPCSModifiers/value-set,
+   "http://hl7.org/fhir/us/carin-bb/ValueSet/C4BBProfessionalAndNonClinicianClaimType"
+   #zen/quote hl7-fhir-us-carin-bb.value-set.C4BBProfessionalAndNonClinicianClaimType/value-set}}}
