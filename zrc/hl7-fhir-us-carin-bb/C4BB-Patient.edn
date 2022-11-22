@@ -3,8 +3,6 @@
  #{hl7-fhir-r4-core.canonical
    hl7-fhir-r4-core.code
    zen.fhir
-   hl7-fhir-r4-core.boolean
-   hl7-fhir-r4-core.dateTime
    hl7-fhir-r4-core.string
    hl7-fhir-us-carin-bb.value-set.C4BBPatientIdentifierType
    hl7-fhir-r4-core.instant
@@ -17,7 +15,7 @@
    hl7-fhir-r4-core.Identifier
    hl7-fhir-r4-core.Address},
  schema
- {:zen.fhir/version "0.6.0",
+ {:zen.fhir/version "0.6.1",
   :confirms
   #{hl7-fhir-us-core.us-core-patient/schema zen.fhir/Resource},
   :zen/tags #{zen.fhir/profile-schema zen/schema},
@@ -81,15 +79,11 @@
       :every {:confirms #{hl7-fhir-r4-core.Element/schema}}}},
     :require #{:lastUpdated :profile},
     :fhir/flags #{:MS}},
-   :deceasedDateTime {:confirms #{hl7-fhir-r4-core.dateTime/schema}},
-   :_deceasedDateTime {:confirms #{hl7-fhir-r4-core.Element/schema}},
-   :deceasedBoolean {:confirms #{hl7-fhir-r4-core.boolean/schema}},
    :name
    {:type zen/vector,
     :every {:confirms #{hl7-fhir-r4-core.HumanName/schema}}},
    :_gender {:confirms #{hl7-fhir-r4-core.Element/schema}},
    :birthDate {:confirms #{hl7-fhir-r4-core.date/schema}},
-   :_deceasedBoolean {:confirms #{hl7-fhir-r4-core.Element/schema}},
    :_birthDate {:confirms #{hl7-fhir-r4-core.Element/schema}},
    :deceased #:fhir{:polymorphic true, :flags #{:MS}},
    :identifier

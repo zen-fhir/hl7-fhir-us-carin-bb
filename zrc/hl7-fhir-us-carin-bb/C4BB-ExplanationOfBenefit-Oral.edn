@@ -28,7 +28,7 @@
    hl7-fhir-us-carin-bb.value-set.OralBodySite
    hl7-fhir-us-carin-bb.value-set.AMACPTCMSHCPCSModifiers},
  schema
- {:zen.fhir/version "0.6.0",
+ {:zen.fhir/version "0.6.1",
   :confirms
   #{zen.fhir/Resource
     hl7-fhir-us-carin-bb.C4BB-ExplanationOfBenefit/schema},
@@ -280,10 +280,16 @@
            :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
            :fhir/flags #{:MS}},
           :code {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema}},
-          :timingDate
-          {:confirms #{hl7-fhir-r4-core.date/schema},
-           :zen/desc "Orthodontics appliance application date (200)"},
-          :_timingDate {:confirms #{hl7-fhir-r4-core.Element/schema}},
+          :timing {:confirms #{hl7-fhir-r4-core.date/schema}},
+          :_timing
+          {:confirms #{hl7-fhir-r4-core.Element/schema},
+           :type zen/map,
+           :keys
+           {:date
+            {:confirms #{hl7-fhir-r4-core.date/schema},
+             :zen/desc
+             "Orthodontics appliance application date (200)"},
+            :_date {:confirms #{hl7-fhir-r4-core.Element/schema}}}},
           :value
           {:type zen/map,
            :keys
@@ -314,10 +320,15 @@
                :code "prosthesis"}}},
            :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
            :fhir/flags #{:MS}},
-          :timingDate
-          {:confirms #{hl7-fhir-r4-core.date/schema},
-           :zen/desc "Date of prior prosthesis replacement  (203)"},
-          :_timingDate {:confirms #{hl7-fhir-r4-core.Element/schema}},
+          :timing {:confirms #{hl7-fhir-r4-core.date/schema}},
+          :_timing
+          {:confirms #{hl7-fhir-r4-core.Element/schema},
+           :type zen/map,
+           :keys
+           {:date
+            {:confirms #{hl7-fhir-r4-core.date/schema},
+             :zen/desc "Date of prior prosthesis replacement  (203)"},
+            :_date {:confirms #{hl7-fhir-r4-core.Element/schema}}}},
           :value
           {:type zen/map,
            :keys
