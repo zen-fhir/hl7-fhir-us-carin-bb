@@ -3,37 +3,25 @@
  import
  #{hl7-fhir-us-carin-bb.value-set.X12ClaimAdjustmentReasonCodesCMSRemittanceAdviceRemarkCodes
    hl7-fhir-us-carin-bb.value-set.AHANUBCRevenueCodes
-   hl7-fhir-r4-core.decimal
-   hl7-fhir-r4-core.BackboneElement
    zen.fhir
    hl7-fhir-us-carin-bb.value-set.C4BBAdjudicationCategoryDiscriminator
    us-nlm-vsac.value-set.2.16.840.1.114222.4.11.1066
-   hl7-fhir-r4-core.Money
    hl7-fhir-us-carin-bb.value-set.AHANUBCPriorityTypeOfAdmissionOrVisit
-   hl7-fhir-r4-core.dateTime
    hl7-fhir-us-carin-bb.value-set.AHANUBCPatientDischargeStatus
    hl7-fhir-us-carin-bb.C4BB-ExplanationOfBenefit
-   hl7-fhir-r4-core.string
    hl7-fhir-us-carin-bb.value-set.AHANUBCTypeOfBill
-   hl7-fhir-r4-core.date
-   hl7-fhir-r4-core.Quantity
    hl7-fhir-us-carin-bb.value-set.C4BBClaimOutpatientInstitutionalDiagnosisType
    hl7-fhir-us-carin-bb.value-set.C4BBClaimInstitutionalCareTeamRole
    hl7-fhir-us-carin-bb.C4BB-Organization
-   hl7-fhir-r4-core.Meta
-   hl7-fhir-r4-core.Reference
    hl7-fhir-us-carin-bb.value-set.C4BBTotalCategoryDiscriminator
    hl7-fhir-us-carin-bb.value-set.AHANUBCPointOfOriginForAdmissionOrVisit
-   hl7-fhir-r4-core.positiveInt
-   hl7-fhir-r4-core.Element
    hl7-fhir-us-carin-bb.value-set.C4BBEOBInstitutionalProcedureCodes
    hl7-fhir-us-carin-bb.value-set.C4BBPayerProviderContractingStatus
-   hl7-fhir-r4-core.CodeableConcept
    hl7-fhir-us-carin-bb.value-set.CDCICD910CMDiagnosisCodes
    hl7-fhir-us-carin-bb.value-set.C4BBInstitutionalClaimSubType
    hl7-fhir-us-carin-bb.value-set.AMACPTCMSHCPCSModifiers},
  schema
- {:zen.fhir/version "0.6.3",
+ {:zen.fhir/version "0.6.4",
   :confirms
   #{zen.fhir/Resource
     hl7-fhir-us-carin-bb.C4BB-ExplanationOfBenefit/schema},
@@ -45,31 +33,18 @@
   :zen/desc
   "This profile is used for Explanation of Benefits (EOBs) based on claims submitted by clinics, hospitals, skilled nursing facilities and other institutions for outpatient services, which may include including the use of equipment and supplies, laboratory services, radiology services and other charges. Outpatient claims are submitted for services rendered at an institution that are not part of an overnight stay.\nThe claims data is based on the institutional claim form UB-04, submission standards adopted by the Department of Health and Human Services.",
   :keys
-  {:_created {:confirms #{hl7-fhir-r4-core.Element/schema}},
-   :processNote
+  {:processNote
    {:type zen/vector,
-    :every
-    {:confirms #{hl7-fhir-r4-core.BackboneElement/schema},
-     :type zen/map,
-     :keys
-     {:text
-      {:confirms #{hl7-fhir-r4-core.string/schema},
-       :fhir/flags #{:MS}},
-      :_text {:confirms #{hl7-fhir-r4-core.Element/schema}}}}},
+    :every {:type zen/map, :keys {:text #:fhir{:flags #{:MS}}}}},
    :diagnosis
    {:type zen/vector,
     :every
-    {:confirms #{hl7-fhir-r4-core.BackboneElement/schema},
-     :type zen/map,
+    {:type zen/map,
      :keys
-     {:sequence {:confirms #{hl7-fhir-r4-core.positiveInt/schema}},
-      :_sequence {:confirms #{hl7-fhir-r4-core.Element/schema}},
-      :diagnosis
+     {:diagnosis
       {:fhir/polymorphic true,
        :type zen/map,
-       :keys
-       {:CodeableConcept
-        {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema}}},
+       :keys {},
        :fhir/flags #{:MS},
        :zen.fhir/value-set
        {:symbol
@@ -78,8 +53,7 @@
       :type
       {:type zen/vector,
        :every
-       {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
-        :fhir/flags #{:MS},
+       {:fhir/flags #{:MS},
         :zen.fhir/value-set
         {:symbol
          hl7-fhir-us-carin-bb.value-set.C4BBClaimOutpatientInstitutionalDiagnosisType/value-set,
@@ -88,7 +62,6 @@
        :maxItems 1}},
      :require #{:type}},
     :minItems 1},
-   :meta {:confirms #{hl7-fhir-r4-core.Meta/schema}},
    :adjudication
    {:slicing
     {:slices
@@ -121,8 +94,7 @@
              :code "denialreason"}}}}}}}},
     :type zen/vector,
     :every
-    {:confirms #{hl7-fhir-r4-core.BackboneElement/schema},
-     :type zen/map,
+    {:type zen/map,
      :keys
      {:category
       {:fhir/flags #{:MS},
@@ -147,14 +119,11 @@
             #{{:system
                "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType",
                :code "clmrecvddate"}}},
-           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
            :fhir/flags #{:MS}},
           :timing
           {:fhir/polymorphic true,
            :type zen/map,
-           :keys
-           {:date {:confirms #{hl7-fhir-r4-core.date/schema}},
-            :_date {:confirms #{hl7-fhir-r4-core.Element/schema}}},
+           :keys {},
            :fhir/flags #{:MS}}},
          :require #{:timing}}},
        :filter
@@ -178,11 +147,9 @@
             #{{:system
                "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType",
                :code "discharge-status"}}},
-           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
            :fhir/flags #{:MS}},
           :code
-          {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
-           :fhir/flags #{:MS},
+          {:fhir/flags #{:MS},
            :zen.fhir/value-set
            {:symbol
             hl7-fhir-us-carin-bb.value-set.AHANUBCPatientDischargeStatus/value-set,
@@ -209,11 +176,9 @@
             #{{:system
                "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType",
                :code "typeofbill"}}},
-           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
            :fhir/flags #{:MS}},
           :code
-          {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
-           :fhir/flags #{:MS},
+          {:fhir/flags #{:MS},
            :zen.fhir/value-set
            {:symbol
             hl7-fhir-us-carin-bb.value-set.AHANUBCTypeOfBill/value-set,
@@ -240,11 +205,9 @@
             #{{:system
                "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType",
                :code "billingnetworkcontractingstatus"}}},
-           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
            :fhir/flags #{:MS}},
           :code
-          {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
-           :fhir/flags #{:MS},
+          {:fhir/flags #{:MS},
            :zen.fhir/value-set
            {:symbol
             hl7-fhir-us-carin-bb.value-set.C4BBPayerProviderContractingStatus/value-set,
@@ -270,17 +233,10 @@
            {:coding
             #{{:system
                "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType",
-               :code "medicalrecordnumber"}}},
-           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema}},
-          :value {:confirms #{hl7-fhir-r4-core.string/schema}},
+               :code "medicalrecordnumber"}}}},
           :_value
-          {:confirms #{hl7-fhir-r4-core.Element/schema},
-           :type zen/map,
-           :keys
-           {:string
-            {:confirms #{hl7-fhir-r4-core.string/schema},
-             :fhir/flags #{:MS}},
-            :_string {:confirms #{hl7-fhir-r4-core.Element/schema}}},
+          {:type zen/map,
+           :keys {:string #:fhir{:flags #{:MS}}},
            :require #{:string}}}}},
        :filter
        {:engine :match,
@@ -303,11 +259,9 @@
             #{{:system
                "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType",
                :code "pointoforigin"}}},
-           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
            :fhir/flags #{:MS}},
           :code
-          {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
-           :fhir/flags #{:MS},
+          {:fhir/flags #{:MS},
            :zen.fhir/value-set
            {:symbol
             hl7-fhir-us-carin-bb.value-set.AHANUBCPointOfOriginForAdmissionOrVisit/value-set,
@@ -334,11 +288,9 @@
             #{{:system
                "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType",
                :code "admtype"}}},
-           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
            :fhir/flags #{:MS}},
           :code
-          {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
-           :fhir/flags #{:MS},
+          {:fhir/flags #{:MS},
            :zen.fhir/value-set
            {:symbol
             hl7-fhir-us-carin-bb.value-set.AHANUBCPriorityTypeOfAdmissionOrVisit/value-set,
@@ -364,17 +316,10 @@
            {:coding
             #{{:system
                "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType",
-               :code "patientaccountnumber"}}},
-           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema}},
-          :value {:confirms #{hl7-fhir-r4-core.string/schema}},
+               :code "patientaccountnumber"}}}},
           :_value
-          {:confirms #{hl7-fhir-r4-core.Element/schema},
-           :type zen/map,
-           :keys
-           {:string
-            {:confirms #{hl7-fhir-r4-core.string/schema},
-             :fhir/flags #{:MS}},
-            :_string {:confirms #{hl7-fhir-r4-core.Element/schema}}},
+          {:type zen/map,
+           :keys {:string #:fhir{:flags #{:MS}}},
            :require #{:string}}}}},
        :filter
        {:engine :match,
@@ -385,31 +330,22 @@
              "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType",
              :code "patientaccountnumber"}}}}}}}},
     :type zen/vector,
-    :every {:confirms #{hl7-fhir-r4-core.BackboneElement/schema}},
+    :every {},
     :minItems 1},
-   :payment
-   {:confirms #{hl7-fhir-r4-core.BackboneElement/schema},
-    :type zen/map,
-    :keys
-    {:date
-     {:confirms #{hl7-fhir-r4-core.date/schema}, :fhir/flags #{:MS}},
-     :_date {:confirms #{hl7-fhir-r4-core.Element/schema}}}},
+   :payment {:type zen/map, :keys {:date #:fhir{:flags #{:MS}}}},
    :item
    {:type zen/vector,
     :every
-    {:confirms #{hl7-fhir-r4-core.BackboneElement/schema},
-     :type zen/map,
+    {:type zen/map,
      :keys
      {:revenue
-      {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
-       :fhir/flags #{:MS},
+      {:fhir/flags #{:MS},
        :zen.fhir/value-set
        {:symbol
         hl7-fhir-us-carin-bb.value-set.AHANUBCRevenueCodes/value-set,
         :strength :required}},
       :productOrService
-      {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
-       :fhir/flags #{:MS},
+      {:fhir/flags #{:MS},
        :zen.fhir/value-set
        {:symbol
         hl7-fhir-us-carin-bb.value-set.C4BBEOBInstitutionalProcedureCodes/value-set,
@@ -417,23 +353,16 @@
       :modifier
       {:type zen/vector,
        :every
-       {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
-        :fhir/flags #{:MS},
+       {:fhir/flags #{:MS},
         :zen.fhir/value-set
         {:symbol
          hl7-fhir-us-carin-bb.value-set.AMACPTCMSHCPCSModifiers/value-set,
          :strength :required}}},
       :serviced
       {:type zen/map,
-       :keys
-       {:date
-        {:confirms #{hl7-fhir-r4-core.date/schema},
-         :fhir/flags #{:MS}},
-        :_date {:confirms #{hl7-fhir-r4-core.Element/schema}}},
+       :keys {:date #:fhir{:flags #{:MS}}},
        :require #{:date}},
-      :quantity
-      {:confirms #{hl7-fhir-r4-core.Quantity/schema},
-       :fhir/flags #{:MS}},
+      :quantity #:fhir{:flags #{:MS}},
       :adjudication
       {:slicing
        {:slices
@@ -448,11 +377,9 @@
               {:coding
                #{{:system
                   "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBAdjudicationDiscriminator",
-                  :code "denialreason"}}},
-              :confirms #{hl7-fhir-r4-core.CodeableConcept/schema}},
+                  :code "denialreason"}}}},
              :reason
-             {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
-              :fhir/flags #{:MS},
+             {:fhir/flags #{:MS},
               :zen.fhir/value-set
               {:symbol
                hl7-fhir-us-carin-bb.value-set.X12ClaimAdjustmentReasonCodesCMSRemittanceAdviceRemarkCodes/value-set,
@@ -478,12 +405,8 @@
               {:coding
                #{{:system
                   "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBAdjudicationDiscriminator",
-                  :code "allowedunits"}}},
-              :confirms #{hl7-fhir-r4-core.CodeableConcept/schema}},
-             :value
-             {:confirms #{hl7-fhir-r4-core.decimal/schema},
-              :fhir/flags #{:MS}},
-             :_value {:confirms #{hl7-fhir-r4-core.Element/schema}}},
+                  :code "allowedunits"}}}},
+             :value #:fhir{:flags #{:MS}}},
             :require #{:value}}},
           :filter
           {:engine :match,
@@ -495,73 +418,62 @@
                 :code "allowedunits"}}}}}}}},
        :type zen/vector,
        :every
-       {:confirms #{hl7-fhir-r4-core.BackboneElement/schema},
-        :type zen/map,
+       {:type zen/map,
         :keys
         {:category
-         {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
-          :zen.fhir/value-set
-          {:symbol
-           hl7-fhir-us-carin-bb.value-set.C4BBAdjudicationCategoryDiscriminator/value-set,
-           :strength :required}}},
+         #:zen.fhir{:value-set
+                    {:symbol
+                     hl7-fhir-us-carin-bb.value-set.C4BBAdjudicationCategoryDiscriminator/value-set,
+                     :strength :required}}},
         :fhir/flags #{:MS}}}},
      :require #{:serviced}}},
    :type
    {:match
     {:coding
      #{{:system "http://terminology.hl7.org/CodeSystem/claim-type",
-        :code "institutional"}}},
-    :confirms #{hl7-fhir-r4-core.CodeableConcept/schema}},
-   :created
-   {:confirms #{hl7-fhir-r4-core.dateTime/schema}, :fhir/flags #{:MS}},
+        :code "institutional"}}}},
+   :created #:fhir{:flags #{:MS}},
    :total
    {:slicing {:slices {}},
     :type zen/vector,
     :every
-    {:confirms #{hl7-fhir-r4-core.BackboneElement/schema},
-     :type zen/map,
+    {:type zen/map,
      :keys
      {:category
-      {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
-       :fhir/flags #{:MS},
+      {:fhir/flags #{:MS},
        :zen.fhir/value-set
        {:symbol
         hl7-fhir-us-carin-bb.value-set.C4BBTotalCategoryDiscriminator/value-set,
-        :strength :extensible}},
-      :amount {:confirms #{hl7-fhir-r4-core.Money/schema}}}}},
+        :strength :extensible}}}}},
    :subType
    {:match
     {:coding
      #{{:system
         "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBInstitutionalClaimSubType",
         :code "outpatient"}}},
-    :confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
     :fhir/flags #{:MS},
     :zen.fhir/value-set
     {:symbol
      hl7-fhir-us-carin-bb.value-set.C4BBInstitutionalClaimSubType/value-set,
      :strength :required}},
    :provider
-   {:confirms #{hl7-fhir-r4-core.Reference/schema zen.fhir/Reference},
+   {:confirms #{zen.fhir/Reference},
     :zen.fhir/reference
     {:refers #{hl7-fhir-us-carin-bb.C4BB-Organization/schema}}},
    :careTeam
    {:type zen/vector,
     :every
-    {:confirms #{hl7-fhir-r4-core.BackboneElement/schema},
-     :type zen/map,
+    {:type zen/map,
      :keys
      {:role
-      {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
-       :zen.fhir/value-set
-       {:symbol
-        hl7-fhir-us-carin-bb.value-set.C4BBClaimInstitutionalCareTeamRole/value-set,
-        :strength :required}},
+      #:zen.fhir{:value-set
+                 {:symbol
+                  hl7-fhir-us-carin-bb.value-set.C4BBClaimInstitutionalCareTeamRole/value-set,
+                  :strength :required}},
       :qualification
-      {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
-       :zen.fhir/value-set
-       {:symbol
-        us-nlm-vsac.value-set.2.16.840.1.114222.4.11.1066/value-set,
-        :strength :required}}},
+      #:zen.fhir{:value-set
+                 {:symbol
+                  us-nlm-vsac.value-set.2.16.840.1.114222.4.11.1066/value-set,
+                  :strength :required}}},
      :require #{:role}}}},
   :zen.fhir/type "ExplanationOfBenefit"}}

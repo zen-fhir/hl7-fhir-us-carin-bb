@@ -1,23 +1,12 @@
 {ns hl7-fhir-us-carin-bb.C4BB-Coverage,
  import
- #{hl7-fhir-r4-core.Period
-   hl7-fhir-r4-core.BackboneElement
-   hl7-fhir-r4-core.canonical
-   hl7-fhir-r4-core.code
-   zen.fhir
+ #{zen.fhir
    hl7-fhir-r4-core.value-set.subscriber-relationship
-   hl7-fhir-r4-core.string
-   hl7-fhir-r4-core.instant
    hl7-fhir-r4-core.Coverage
    hl7-fhir-us-carin-bb.C4BB-Organization
-   hl7-fhir-r4-core.Meta
-   hl7-fhir-r4-core.Reference
-   hl7-fhir-r4-core.Element
-   hl7-fhir-us-carin-bb.C4BB-Patient
-   hl7-fhir-r4-core.CodeableConcept
-   hl7-fhir-r4-core.Identifier},
+   hl7-fhir-us-carin-bb.C4BB-Patient},
  schema
- {:zen.fhir/version "0.6.3",
+ {:zen.fhir/version "0.6.4",
   :confirms #{zen.fhir/Resource hl7-fhir-r4-core.Coverage/schema},
   :zen/tags #{zen.fhir/profile-schema zen/schema},
   :zen.fhir/profileUri
@@ -28,13 +17,9 @@
   "Data that reflect a payer’s coverage that was effective as of the date of service or the date of admission of the claim.",
   :keys
   {:meta
-   {:confirms #{hl7-fhir-r4-core.Meta/schema},
-    :type zen/map,
+   {:type zen/map,
     :keys
-    {:lastUpdated
-     {:confirms #{hl7-fhir-r4-core.instant/schema},
-      :fhir/flags #{:MS}},
-     :_lastUpdated {:confirms #{hl7-fhir-r4-core.Element/schema}},
+    {:lastUpdated #:fhir{:flags #{:MS}},
      :profile
      {:slicing
       {:slices
@@ -47,37 +32,31 @@
            #{"http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-Coverage"
              "http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-Coverage|1.2.0"})}}}},
       :type zen/vector,
-      :every {:confirms #{hl7-fhir-r4-core.canonical/schema}},
+      :every {},
       :minItems 1},
-     :_profile
-     {:type zen/vector,
-      :every {:confirms #{hl7-fhir-r4-core.Element/schema}}}},
+     :_profile {:type zen/vector, :every {}}},
     :require #{:lastUpdated :profile},
     :fhir/flags #{:MS}},
    :beneficiary
-   {:confirms #{hl7-fhir-r4-core.Reference/schema zen.fhir/Reference},
-    :fhir/flags #{:MS},
+   {:fhir/flags #{:MS},
+    :confirms #{zen.fhir/Reference},
     :zen.fhir/reference
     {:refers #{hl7-fhir-us-carin-bb.C4BB-Patient/schema}}},
-   :_status {:confirms #{hl7-fhir-r4-core.Element/schema}},
    :relationship
-   {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
-    :fhir/flags #{:MS},
+   {:fhir/flags #{:MS},
     :zen.fhir/value-set
     {:symbol
      hl7-fhir-r4-core.value-set.subscriber-relationship/value-set,
      :strength :required}},
-   :type {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema}},
    :payor
    {:type zen/vector,
     :every
-    {:confirms #{hl7-fhir-r4-core.Reference/schema zen.fhir/Reference},
-     :fhir/flags #{:MS},
+    {:fhir/flags #{:MS},
+     :confirms #{zen.fhir/Reference},
      :zen.fhir/reference
      {:refers #{hl7-fhir-us-carin-bb.C4BB-Organization/schema}}},
     :maxItems 1},
-   :status
-   {:confirms #{hl7-fhir-r4-core.code/schema}, :fhir/flags #{:MS}},
+   :status #:fhir{:flags #{:MS}},
    :class
    {:slicing
     {:slices
@@ -93,18 +72,9 @@
            {:coding
             #{{:system
                "http://terminology.hl7.org/CodeSystem/coverage-class",
-               :code "group"}}},
-           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema}},
-          :value
-          {:confirms #{hl7-fhir-r4-core.string/schema},
-           :fhir/flags #{:MS},
-           :zen/desc "Group Number"},
-          :_value {:confirms #{hl7-fhir-r4-core.Element/schema}},
-          :name
-          {:confirms #{hl7-fhir-r4-core.string/schema},
-           :fhir/flags #{:MS},
-           :zen/desc "Group Name"},
-          :_name {:confirms #{hl7-fhir-r4-core.Element/schema}}}}},
+               :code "group"}}}},
+          :value {:fhir/flags #{:MS}, :zen/desc "Group Number"},
+          :name {:fhir/flags #{:MS}, :zen/desc "Group Name"}}}},
        :filter
        {:engine :match,
         :match
@@ -125,18 +95,9 @@
            {:coding
             #{{:system
                "http://terminology.hl7.org/CodeSystem/coverage-class",
-               :code "plan"}}},
-           :confirms #{hl7-fhir-r4-core.CodeableConcept/schema}},
-          :value
-          {:confirms #{hl7-fhir-r4-core.string/schema},
-           :fhir/flags #{:MS},
-           :zen/desc "Plan Number"},
-          :_value {:confirms #{hl7-fhir-r4-core.Element/schema}},
-          :name
-          {:confirms #{hl7-fhir-r4-core.string/schema},
-           :fhir/flags #{:MS},
-           :zen/desc "Plan Name"},
-          :_name {:confirms #{hl7-fhir-r4-core.Element/schema}}}}},
+               :code "plan"}}}},
+          :value {:fhir/flags #{:MS}, :zen/desc "Plan Number"},
+          :name {:fhir/flags #{:MS}, :zen/desc "Plan Name"}}}},
        :filter
        {:engine :match,
         :match
@@ -146,17 +107,8 @@
              "http://terminology.hl7.org/CodeSystem/coverage-class",
              :code "plan"}}}}}}}},
     :type zen/vector,
-    :every
-    {:confirms #{hl7-fhir-r4-core.BackboneElement/schema},
-     :fhir/flags #{:MS}}},
-   :identifier
-   {:type zen/vector,
-    :every
-    {:confirms #{hl7-fhir-r4-core.Identifier/schema},
-     :fhir/flags #{:MS}}},
-   :period
-   {:confirms #{hl7-fhir-r4-core.Period/schema}, :fhir/flags #{:MS}},
-   :_subscriberId {:confirms #{hl7-fhir-r4-core.Element/schema}},
-   :subscriberId
-   {:confirms #{hl7-fhir-r4-core.string/schema}, :fhir/flags #{:MS}}},
+    :every #:fhir{:flags #{:MS}}},
+   :identifier {:type zen/vector, :every #:fhir{:flags #{:MS}}},
+   :period #:fhir{:flags #{:MS}},
+   :subscriberId #:fhir{:flags #{:MS}}},
   :zen.fhir/type "Coverage"}}
