@@ -4,7 +4,7 @@
    hl7-fhir-us-carin-bb.value-set.C4BBPatientIdentifierType
    hl7-fhir-us-core.us-core-patient},
  schema
- {:zen.fhir/version "0.6.4",
+ {:zen.fhir/version "0.6.5",
   :confirms
   #{hl7-fhir-us-core.us-core-patient/schema zen.fhir/Resource},
   :zen/tags #{zen.fhir/profile-schema zen/schema},
@@ -20,16 +20,15 @@
     :every
     {:type zen/map,
      :keys
-     {:_line {:type zen/vector, :every {}},
-      :line {:type zen/vector, :every {}},
-      :country #:fhir{:flags #{:MS}},
+     {:country #:fhir{:flags #{:MS}},
       :district #:fhir{:flags #{:MS}}}}},
    :meta
    {:type zen/map,
     :keys
     {:lastUpdated #:fhir{:flags #{:MS}},
      :profile
-     {:slicing
+     {:type zen/vector,
+      :slicing
       {:slices
        {"supportedProfile"
         {:schema {:type zen/vector, :minItems 1, :maxItems 1},
@@ -39,16 +38,13 @@
           (:zen.match/one-of
            #{"http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-Patient|1.2.0"
              "http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-Patient"})}}}},
-      :type zen/vector,
-      :every {},
-      :minItems 1},
-     :_profile {:type zen/vector, :every {}}},
+      :minItems 1}},
     :require #{:lastUpdated :profile},
     :fhir/flags #{:MS}},
-   :name {:type zen/vector, :every {}},
    :deceased #:fhir{:polymorphic true, :flags #{:MS}},
    :identifier
-   {:slicing
+   {:type zen/vector,
+    :slicing
     {:slices
      {"memberid"
       {:schema
@@ -91,7 +87,6 @@
           #{{:system
              "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBIdentifierType",
              :code "um"}}}}}}}},
-    :type zen/vector,
     :every
     {:type zen/map,
      :keys

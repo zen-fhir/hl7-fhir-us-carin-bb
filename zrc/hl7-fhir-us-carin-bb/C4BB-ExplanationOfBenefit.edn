@@ -1,35 +1,20 @@
 {ns hl7-fhir-us-carin-bb.C4BB-ExplanationOfBenefit,
  import
- #{hl7-fhir-r4-core.Period
-   hl7-fhir-r4-core.BackboneElement
-   hl7-fhir-r4-core.canonical
-   hl7-fhir-us-carin-bb.value-set.C4BBPayerClaimPaymentStatusCode
-   hl7-fhir-r4-core.code
+ #{hl7-fhir-us-carin-bb.value-set.C4BBPayerClaimPaymentStatusCode
    zen.fhir
    hl7-fhir-r4-core.value-set.claim-type
-   hl7-fhir-r4-core.boolean
-   hl7-fhir-r4-core.dateTime
    hl7-fhir-r4-core.ExplanationOfBenefit
    hl7-fhir-us-carin-bb.value-set.C4BBPayeeType
-   hl7-fhir-r4-core.string
    hl7-fhir-us-carin-bb.value-set.C4BBSupportingInfoType
-   hl7-fhir-r4-core.instant
-   hl7-fhir-r4-core.date
    hl7-fhir-us-carin-bb.C4BB-Practitioner
    hl7-fhir-us-carin-bb.C4BB-Organization
    hl7-fhir-us-carin-bb.value-set.C4BBRelatedClaimRelationshipCodes
-   hl7-fhir-r4-core.Meta
-   hl7-fhir-r4-core.Reference
-   hl7-fhir-r4-core.positiveInt
-   hl7-fhir-r4-core.Element
    hl7-fhir-us-carin-bb.value-set.C4BBClaimIdentifierType
    hl7-fhir-us-carin-bb.C4BB-Patient
-   hl7-fhir-r4-core.CodeableConcept
-   hl7-fhir-r4-core.Identifier
    hl7-fhir-us-carin-bb.C4BB-Coverage
    hl7-fhir-r4-core.value-set.process-priority},
  schema
- {:zen.fhir/version "0.6.4",
+ {:zen.fhir/version "0.6.5",
   :confirms
   #{zen.fhir/Resource hl7-fhir-r4-core.ExplanationOfBenefit/schema},
   :zen/tags #{zen/schema zen.fhir/structure-schema},
@@ -40,179 +25,110 @@
   :zen/desc
   "Abstract parent profile that includes constraints that are common to the four specific ExplanationOfBenefit (EOB) profiles defined in this Implementation Guide.\nAll EOB instances should be from one of the four concrete EOB profiles defined in this Implementation Guide:  Inpatient, Outpatient, Pharmacy, and Professional/NonClinician",
   :keys
-  {:_created {:confirms #{hl7-fhir-r4-core.Element/schema}},
-   :patient
-   {:confirms #{hl7-fhir-r4-core.Reference/schema zen.fhir/Reference},
-    :fhir/flags #{:MS},
+  {:patient
+   {:fhir/flags #{:MS},
+    :confirms #{zen.fhir/Reference},
     :zen.fhir/reference
     {:refers #{hl7-fhir-us-carin-bb.C4BB-Patient/schema}}},
    :insurance
    {:type zen/vector,
     :every
-    {:confirms #{hl7-fhir-r4-core.BackboneElement/schema},
-     :type zen/map,
+    {:type zen/map,
      :keys
-     {:focal
-      {:confirms #{hl7-fhir-r4-core.boolean/schema},
-       :fhir/flags #{:MS}},
-      :_focal {:confirms #{hl7-fhir-r4-core.Element/schema}},
+     {:focal #:fhir{:flags #{:MS}},
       :coverage
-      {:confirms
-       #{hl7-fhir-r4-core.Reference/schema zen.fhir/Reference},
-       :fhir/flags #{:MS},
+      {:fhir/flags #{:MS},
+       :confirms #{zen.fhir/Reference},
        :zen.fhir/reference
        {:refers #{hl7-fhir-us-carin-bb.C4BB-Coverage/schema}}}},
      :fhir/flags #{:MS}}},
-   :processNote
-   {:type zen/vector,
-    :every
-    {:confirms #{hl7-fhir-r4-core.BackboneElement/schema},
-     :type zen/map,
-     :keys
-     {:text {:confirms #{hl7-fhir-r4-core.string/schema}},
-      :_text {:confirms #{hl7-fhir-r4-core.Element/schema}}},
-     :fhir/flags #{:MS}}},
+   :processNote {:type zen/vector, :every #:fhir{:flags #{:MS}}},
    :meta
-   {:confirms #{hl7-fhir-r4-core.Meta/schema},
-    :type zen/map,
+   {:type zen/map,
     :keys
-    {:lastUpdated
-     {:confirms #{hl7-fhir-r4-core.instant/schema},
-      :fhir/flags #{:MS}},
-     :_lastUpdated {:confirms #{hl7-fhir-r4-core.Element/schema}},
-     :profile
-     {:slicing {:slices {}},
-      :type zen/vector,
-      :every {:confirms #{hl7-fhir-r4-core.canonical/schema}},
-      :minItems 1},
-     :_profile
-     {:type zen/vector,
-      :every {:confirms #{hl7-fhir-r4-core.Element/schema}}}},
+    {:lastUpdated #:fhir{:flags #{:MS}},
+     :profile {:type zen/vector, :slicing {:slices {}}, :minItems 1}},
     :require #{:lastUpdated :profile},
     :fhir/flags #{:MS}},
    :supportingInfo
    {:type zen/vector,
     :every
-    {:confirms #{hl7-fhir-r4-core.BackboneElement/schema},
-     :type zen/map,
+    {:type zen/map,
      :keys
-     {:sequence {:confirms #{hl7-fhir-r4-core.positiveInt/schema}},
-      :_sequence {:confirms #{hl7-fhir-r4-core.Element/schema}},
-      :category
-      {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
-       :zen.fhir/value-set
-       {:symbol
-        hl7-fhir-us-carin-bb.value-set.C4BBSupportingInfoType/value-set,
-        :strength :extensible}}},
+     {:category
+      #:zen.fhir{:value-set
+                 {:symbol
+                  hl7-fhir-us-carin-bb.value-set.C4BBSupportingInfoType/value-set,
+                  :strength :extensible}}},
      :fhir/flags #{:MS}}},
-   :use
-   {:match "claim",
-    :confirms #{hl7-fhir-r4-core.code/schema},
-    :fhir/flags #{:MS}},
+   :use {:match "claim", :fhir/flags #{:MS}},
    :payment
-   {:confirms #{hl7-fhir-r4-core.BackboneElement/schema},
-    :type zen/map,
+   {:type zen/map,
     :keys
     {:type
-     {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
-      :fhir/flags #{:MS},
+     {:fhir/flags #{:MS},
       :zen.fhir/value-set
       {:symbol
        hl7-fhir-us-carin-bb.value-set.C4BBPayerClaimPaymentStatusCode/value-set,
-       :strength :required}},
-     :date {:confirms #{hl7-fhir-r4-core.date/schema}},
-     :_date {:confirms #{hl7-fhir-r4-core.Element/schema}}},
+       :strength :required}}},
     :fhir/flags #{:MS}},
    :item
    {:type zen/vector,
     :every
-    {:confirms #{hl7-fhir-r4-core.BackboneElement/schema},
-     :type zen/map,
+    {:type zen/map,
      :keys
-     {:sequence
-      {:confirms #{hl7-fhir-r4-core.positiveInt/schema},
-       :fhir/flags #{:MS}},
-      :_sequence {:confirms #{hl7-fhir-r4-core.Element/schema}},
-      :noteNumber
-      {:type zen/vector,
-       :every
-       {:confirms #{hl7-fhir-r4-core.positiveInt/schema},
-        :fhir/flags #{:MS}}},
-      :_noteNumber
-      {:type zen/vector,
-       :every {:confirms #{hl7-fhir-r4-core.Element/schema}}},
+     {:sequence #:fhir{:flags #{:MS}},
+      :noteNumber {:type zen/vector, :every #:fhir{:flags #{:MS}}},
       :adjudication
       {:type zen/vector,
        :every
-       {:confirms #{hl7-fhir-r4-core.BackboneElement/schema},
-        :type zen/map,
-        :keys
-        {:category
-         {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
-          :fhir/flags #{:MS}}}}}},
+       {:type zen/map, :keys {:category #:fhir{:flags #{:MS}}}}}},
      :fhir/flags #{:MS}},
     :minItems 1},
-   :_status {:confirms #{hl7-fhir-r4-core.Element/schema}},
    :type
-   {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
-    :fhir/flags #{:MS},
+   {:fhir/flags #{:MS},
     :zen.fhir/value-set
     {:symbol hl7-fhir-r4-core.value-set.claim-type/value-set,
      :strength :required}},
-   :created {:confirms #{hl7-fhir-r4-core.dateTime/schema}},
-   :outcome
-   {:confirms #{hl7-fhir-r4-core.code/schema}, :fhir/flags #{:MS}},
+   :outcome #:fhir{:flags #{:MS}},
    :related
    {:type zen/vector,
     :every
-    {:confirms #{hl7-fhir-r4-core.BackboneElement/schema},
-     :type zen/map,
+    {:type zen/map,
      :keys
      {:relationship
-      {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
-       :fhir/flags #{:MS},
+      {:fhir/flags #{:MS},
        :zen.fhir/value-set
        {:symbol
         hl7-fhir-us-carin-bb.value-set.C4BBRelatedClaimRelationshipCodes/value-set,
         :strength :required}},
-      :reference
-      {:confirms #{hl7-fhir-r4-core.Identifier/schema},
-       :fhir/flags #{:MS}}},
+      :reference #:fhir{:flags #{:MS}}},
      :require #{:relationship :reference},
      :fhir/flags #{:MS}}},
-   :_outcome {:confirms #{hl7-fhir-r4-core.Element/schema}},
    :total
-   {:type zen/vector,
-    :every
-    {:confirms #{hl7-fhir-r4-core.BackboneElement/schema},
-     :fhir/flags #{:MS}},
-    :minItems 1},
+   {:type zen/vector, :every #:fhir{:flags #{:MS}}, :minItems 1},
    :insurer
-   {:confirms #{hl7-fhir-r4-core.Reference/schema zen.fhir/Reference},
-    :fhir/flags #{:MS},
+   {:fhir/flags #{:MS},
+    :confirms #{zen.fhir/Reference},
     :zen.fhir/reference
     {:refers #{hl7-fhir-us-carin-bb.C4BB-Organization/schema}}},
    :priority
-   {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
-    :zen.fhir/value-set
-    {:symbol hl7-fhir-r4-core.value-set.process-priority/value-set,
-     :strength :required}},
-   :status
-   {:confirms #{hl7-fhir-r4-core.code/schema}, :fhir/flags #{:MS}},
+   #:zen.fhir{:value-set
+              {:symbol
+               hl7-fhir-r4-core.value-set.process-priority/value-set,
+               :strength :required}},
+   :status #:fhir{:flags #{:MS}},
    :payee
-   {:confirms #{hl7-fhir-r4-core.BackboneElement/schema},
-    :type zen/map,
+   {:type zen/map,
     :keys
     {:type
-     {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
-      :fhir/flags #{:MS},
+     {:fhir/flags #{:MS},
       :zen.fhir/value-set
       {:symbol hl7-fhir-us-carin-bb.value-set.C4BBPayeeType/value-set,
        :strength :required}},
      :party
-     {:confirms
-      #{hl7-fhir-r4-core.Reference/schema zen.fhir/Reference},
-      :fhir/flags #{:MS},
+     {:fhir/flags #{:MS},
+      :confirms #{zen.fhir/Reference},
       :zen.fhir/reference
       {:refers
        #{hl7-fhir-us-carin-bb.C4BB-Organization/schema
@@ -220,24 +136,14 @@
          hl7-fhir-us-carin-bb.C4BB-Practitioner/schema}}}},
     :require #{:type},
     :fhir/flags #{:MS}},
-   :billablePeriod
-   {:confirms #{hl7-fhir-r4-core.Period/schema},
-    :type zen/map,
-    :keys
-    {:start {:confirms #{hl7-fhir-r4-core.dateTime/schema}},
-     :_start {:confirms #{hl7-fhir-r4-core.Element/schema}},
-     :end {:confirms #{hl7-fhir-r4-core.dateTime/schema}},
-     :_end {:confirms #{hl7-fhir-r4-core.Element/schema}}},
-    :fhir/flags #{:MS}},
+   :billablePeriod #:fhir{:flags #{:MS}},
    :identifier
    {:type zen/vector,
     :every
-    {:confirms #{hl7-fhir-r4-core.Identifier/schema},
-     :type zen/map,
+    {:type zen/map,
      :keys
      {:type
-      {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
-       :fhir/flags #{:MS},
+      {:fhir/flags #{:MS},
        :zen.fhir/value-set
        {:symbol
         hl7-fhir-us-carin-bb.value-set.C4BBClaimIdentifierType/value-set,
@@ -246,31 +152,24 @@
      :fhir/flags #{:MS}},
     :minItems 1},
    :provider
-   {:confirms #{hl7-fhir-r4-core.Reference/schema zen.fhir/Reference},
-    :fhir/flags #{:MS},
+   {:fhir/flags #{:MS},
+    :confirms #{zen.fhir/Reference},
     :zen.fhir/reference
     {:refers
      #{hl7-fhir-us-carin-bb.C4BB-Organization/schema
        hl7-fhir-us-carin-bb.C4BB-Practitioner/schema}}},
-   :_use {:confirms #{hl7-fhir-r4-core.Element/schema}},
    :careTeam
    {:type zen/vector,
     :every
-    {:confirms #{hl7-fhir-r4-core.BackboneElement/schema},
-     :type zen/map,
+    {:type zen/map,
      :keys
-     {:sequence {:confirms #{hl7-fhir-r4-core.positiveInt/schema}},
-      :_sequence {:confirms #{hl7-fhir-r4-core.Element/schema}},
-      :provider
-      {:confirms
-       #{hl7-fhir-r4-core.Reference/schema zen.fhir/Reference},
-       :fhir/flags #{:MS},
+     {:provider
+      {:fhir/flags #{:MS},
+       :confirms #{zen.fhir/Reference},
        :zen.fhir/reference
        {:refers
         #{hl7-fhir-us-carin-bb.C4BB-Organization/schema
           hl7-fhir-us-carin-bb.C4BB-Practitioner/schema}}},
-      :role
-      {:confirms #{hl7-fhir-r4-core.CodeableConcept/schema},
-       :fhir/flags #{:MS}}},
+      :role #:fhir{:flags #{:MS}}},
      :fhir/flags #{:MS}}}},
   :zen.fhir/type "ExplanationOfBenefit"}}

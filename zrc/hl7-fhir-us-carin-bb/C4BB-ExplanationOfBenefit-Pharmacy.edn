@@ -14,7 +14,7 @@
    hl7-fhir-us-carin-bb.value-set.C4BBPayerProviderContractingStatus
    hl7-fhir-us-carin-bb.value-set.NCPDPCompoundCode},
  schema
- {:zen.fhir/version "0.6.4",
+ {:zen.fhir/version "0.6.5",
   :confirms
   #{zen.fhir/Resource
     hl7-fhir-us-carin-bb.C4BB-ExplanationOfBenefit/schema},
@@ -29,9 +29,10 @@
   {:processNote
    {:type zen/vector,
     :every {:type zen/map, :keys {:text #:fhir{:flags #{:MS}}}}},
-   :adjudication {:type zen/vector, :every {}, :maxItems 1},
+   :adjudication {:type zen/vector, :maxItems 1},
    :supportingInfo
-   {:slicing
+   {:type zen/vector,
+    :slicing
     {:slices
      {"dawcode"
       {:schema
@@ -77,11 +78,7 @@
                "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType",
                :code "clmrecvddate"}}},
            :fhir/flags #{:MS}},
-          :timing
-          {:fhir/polymorphic true,
-           :type zen/map,
-           :keys {},
-           :fhir/flags #{:MS}}},
+          :timing #:fhir{:polymorphic true, :flags #{:MS}}},
          :require #{:timing}}},
        :filter
        {:engine :match,
@@ -164,11 +161,7 @@
                "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType",
                :code "dayssupply"}}},
            :fhir/flags #{:MS}},
-          :value
-          {:fhir/polymorphic true,
-           :type zen/map,
-           :keys {},
-           :fhir/flags #{:MS}}},
+          :value #:fhir{:polymorphic true, :flags #{:MS}}},
          :require #{:value}}},
        :filter
        {:engine :match,
@@ -193,11 +186,7 @@
                "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType",
                :code "refillsauthorized"}}},
            :fhir/flags #{:MS}},
-          :value
-          {:fhir/polymorphic true,
-           :type zen/map,
-           :keys {},
-           :fhir/flags #{:MS}}},
+          :value #:fhir{:polymorphic true, :flags #{:MS}}},
          :require #{:value}}},
        :filter
        {:engine :match,
@@ -222,11 +211,7 @@
                "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType",
                :code "refillnum"}}},
            :fhir/flags #{:MS}},
-          :value
-          {:fhir/polymorphic true,
-           :type zen/map,
-           :keys {},
-           :fhir/flags #{:MS}}},
+          :value #:fhir{:polymorphic true, :flags #{:MS}}},
          :require #{:value}}},
        :filter
        {:engine :match,
@@ -294,8 +279,6 @@
           #{{:system
              "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType",
              :code "compoundcode"}}}}}}}},
-    :type zen/vector,
-    :every {},
     :minItems 5},
    :payment {:type zen/map, :keys {:date #:fhir{:flags #{:MS}}}},
    :item
@@ -312,7 +295,8 @@
       :serviced #:fhir{:polymorphic true, :flags #{:MS}},
       :quantity #:fhir{:flags #{:MS}},
       :adjudication
-      {:slicing
+      {:type zen/vector,
+       :slicing
        {:slices
         {"denialreason"
          {:schema
@@ -342,7 +326,6 @@
              #{{:system
                 "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBAdjudicationDiscriminator",
                 :code "denialreason"}}}}}}}},
-       :type zen/vector,
        :every
        {:type zen/map,
         :keys
@@ -374,8 +357,8 @@
         :code "pharmacy"}}}},
    :created #:fhir{:flags #{:MS}},
    :total
-   {:slicing {:slices {}},
-    :type zen/vector,
+   {:type zen/vector,
+    :slicing {:slices {}},
     :every
     {:type zen/map,
      :keys

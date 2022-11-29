@@ -1,7 +1,7 @@
 {ns hl7-fhir-us-carin-bb.C4BB-Organization,
  import #{zen.fhir hl7-fhir-us-core.us-core-organization},
  schema
- {:zen.fhir/version "0.6.4",
+ {:zen.fhir/version "0.6.5",
   :confirms
   #{hl7-fhir-us-core.us-core-organization/schema zen.fhir/Resource},
   :zen/tags #{zen.fhir/profile-schema zen/schema},
@@ -17,7 +17,8 @@
     :keys
     {:lastUpdated #:fhir{:flags #{:MS}},
      :profile
-     {:slicing
+     {:type zen/vector,
+      :slicing
       {:slices
        {"supportedProfile"
         {:schema {:type zen/vector, :minItems 1, :maxItems 1},
@@ -27,11 +28,7 @@
           (:zen.match/one-of
            #{"http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-Organization"
              "http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-Organization|1.2.0"})}}}},
-      :type zen/vector,
-      :every {},
-      :minItems 1},
-     :_profile {:type zen/vector, :every {}}},
+      :minItems 1}},
     :require #{:lastUpdated :profile},
-    :fhir/flags #{:MS}},
-   :address {:type zen/vector, :every {}}},
+    :fhir/flags #{:MS}}},
   :zen.fhir/type "Organization"}}
