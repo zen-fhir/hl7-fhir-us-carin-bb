@@ -18,7 +18,7 @@
    hl7-fhir-us-carin-bb.value-set.C4BBProfessionalAndNonClinicianClaimType
    hl7-fhir-us-carin-bb.value-set.AMACPTCMSHCPCSModifiers},
  schema
- {:zen.fhir/version "0.6.5",
+ {:zen.fhir/version "0.6.6",
   :confirms
   #{zen.fhir/Resource
     hl7-fhir-us-carin-bb.C4BB-ExplanationOfBenefit/schema},
@@ -37,6 +37,7 @@
      :keys
      {:diagnosis
       {:fhir/polymorphic true,
+       :type zen/map,
        :fhir/flags #{:MS},
        :zen.fhir/value-set
        {:symbol
@@ -132,7 +133,8 @@
                "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType",
                :code "clmrecvddate"}}},
            :fhir/flags #{:MS}},
-          :timing #:fhir{:polymorphic true, :flags #{:MS}}},
+          :timing
+          {:fhir/polymorphic true, :type zen/map, :fhir/flags #{:MS}}},
          :require #{:timing}}},
        :filter
        {:engine :match,
@@ -245,7 +247,7 @@
         {:symbol
          hl7-fhir-us-carin-bb.value-set.AMACPTCMSHCPCSModifiers/value-set,
          :strength :required}}},
-      :serviced #:fhir{:polymorphic true},
+      :serviced {:fhir/polymorphic true, :type zen/map},
       :location
       {:type zen/map,
        :keys

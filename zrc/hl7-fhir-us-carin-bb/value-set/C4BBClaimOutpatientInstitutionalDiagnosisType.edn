@@ -5,7 +5,7 @@
  {:zen/tags #{zen.fhir/value-set},
   :zen/desc
   "Indicates if the outpatient institutional diagnosis is principal, other, an external cause of injury or a patient reason for visit.",
-  :zen.fhir/version "0.6.5",
+  :zen.fhir/version "0.6.6",
   :fhir/code-systems
   #{{:fhir/url
      "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBClaimDiagnosisType",

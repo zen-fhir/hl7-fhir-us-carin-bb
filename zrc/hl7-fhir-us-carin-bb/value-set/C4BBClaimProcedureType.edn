@@ -4,7 +4,7 @@
  {:zen/tags #{zen.fhir/value-set},
   :zen/desc
   "Indicates if the inpatient institutional procedure (ICD-PCS) is the principal procedure or another procedure",
-  :zen.fhir/version "0.6.5",
+  :zen.fhir/version "0.6.6",
   :fhir/code-systems
   #{{:fhir/url
      "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBClaimProcedureType",
