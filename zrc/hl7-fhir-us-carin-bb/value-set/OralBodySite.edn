@@ -4,7 +4,7 @@
  {:zen/tags #{zen.fhir/value-set},
   :zen/desc
   "Oral Body Site indicating tooth numbers and area of oral cavity.",
-  :zen.fhir/version "0.6.6",
+  :zen.fhir/version "0.6.6-7",
   :fhir/code-systems
   #{{:fhir/url
      "https://ada.org/OralCavityCode-TEMPORARY-WAITING-FOR-HTA-DEFINED-URL",
