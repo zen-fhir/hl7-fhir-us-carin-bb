@@ -1,34 +1,24 @@
 {ns hl7-fhir-us-carin-bb.C4BB-Organization,
  import #{zen.fhir hl7-fhir-us-core.us-core-organization},
- schema
- {:zen.fhir/version "0.6.6-7",
-  :confirms
-  #{hl7-fhir-us-core.us-core-organization/schema zen.fhir/Resource},
-  :zen/tags #{zen.fhir/profile-schema zen/schema},
-  :zen.fhir/profileUri
-  "http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-Organization",
-  :require #{:meta},
-  :type zen/map,
-  :zen/desc
-  "This profile builds upon the US Core Organization profile. It is used to convey a payer, provider, payee or service facility organization.",
-  :keys
-  {:meta
-   {:type zen/map,
-    :keys
-    {:lastUpdated #:fhir{:flags #{:MS}},
-     :profile
-     {:type zen/vector,
-      :slicing
-      {:slices
-       {"supportedProfile"
-        {:schema {:type zen/vector, :minItems 1, :maxItems 1},
-         :filter
-         {:engine :match,
-          :match
-          (:zen.match/one-of
-           #{"http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-Organization"
-             "http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-Organization|1.2.0"})}}}},
-      :minItems 1}},
-    :require #{:lastUpdated :profile},
-    :fhir/flags #{:MS}}},
-  :zen.fhir/type "Organization"}}
+ schema {:zen.fhir/version "0.6.6-8",
+         :confirms #{hl7-fhir-us-core.us-core-organization/schema
+                     zen.fhir/Resource},
+         :zen/tags #{zen.fhir/profile-schema zen/schema},
+         :zen.fhir/profileUri "http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-Organization",
+         :require #{:meta},
+         :type zen/map,
+         :zen/desc "This profile builds upon the US Core Organization profile. It is used to convey a payer, provider, payee or service facility organization.",
+         :keys {:meta {:type zen/map,
+                       :keys {:lastUpdated {:fhir/flags #{:MS}},
+                              :profile {:type zen/vector,
+                                        :slicing {:slices {"supportedProfile" {:schema {:type zen/vector,
+                                                                                        :minItems 1,
+                                                                                        :maxItems 1},
+                                                                               :filter {:engine :match,
+                                                                                        :match (:zen.match/one-of
+                                                                                                #{"http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-Organization"
+                                                                                                  "http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-Organization|1.2.0"})}}}},
+                                        :minItems 1}},
+                       :require #{:lastUpdated :profile},
+                       :fhir/flags #{:MS}}},
+         :zen.fhir/type "Organization"}}

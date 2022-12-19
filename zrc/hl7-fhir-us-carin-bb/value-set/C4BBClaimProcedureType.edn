@@ -1,20 +1,14 @@
 {ns hl7-fhir-us-carin-bb.value-set.C4BBClaimProcedureType,
  import #{zen.fhir},
- value-set
- {:zen/tags #{zen.fhir/value-set},
-  :zen/desc
-  "Indicates if the inpatient institutional procedure (ICD-PCS) is the principal procedure or another procedure",
-  :zen.fhir/version "0.6.6-7",
-  :fhir/code-systems
-  #{{:fhir/url
-     "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBClaimProcedureType",
-     :zen.fhir/content :bundled}},
-  :uri
-  "http://hl7.org/fhir/us/carin-bb/ValueSet/C4BBClaimProcedureType",
-  :version "1.2.0",
-  :ftr
-  {:module "ig",
-   :source-urls ["node_modules/hl7.fhir.us.carin-bb"],
-   :source-type :igs,
-   :ftr-path "ftr",
-   :tag "init"}}}
+ value-set {:zen/tags #{zen.fhir/value-set},
+            :zen/desc "Indicates if the inpatient institutional procedure (ICD-PCS) is the principal procedure or another procedure",
+            :zen.fhir/version "0.6.6-8",
+            :fhir/code-systems #{{:fhir/url "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBClaimProcedureType",
+                                  :zen.fhir/content :bundled}},
+            :uri "http://hl7.org/fhir/us/carin-bb/ValueSet/C4BBClaimProcedureType",
+            :version "1.2.0",
+            :ftr {:module "ig",
+                  :source-urls ["node_modules/hl7.fhir.us.carin-bb"],
+                  :source-type :igs,
+                  :ftr-path "ftr",
+                  :tag "init"}}}

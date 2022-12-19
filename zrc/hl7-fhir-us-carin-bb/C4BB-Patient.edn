@@ -1,99 +1,54 @@
 {ns hl7-fhir-us-carin-bb.C4BB-Patient,
- import
- #{zen.fhir
-   hl7-fhir-us-carin-bb.value-set.C4BBPatientIdentifierType
-   hl7-fhir-us-core.us-core-patient},
- schema
- {:zen.fhir/version "0.6.6-7",
-  :confirms
-  #{hl7-fhir-us-core.us-core-patient/schema zen.fhir/Resource},
-  :zen/tags #{zen.fhir/profile-schema zen/schema},
-  :zen.fhir/profileUri
-  "http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-Patient",
-  :require #{:meta},
-  :type zen/map,
-  :zen/desc
-  "This profile builds upon the US Core Patient profile. It is used to convey information about the patient who received the services described on the claim.",
-  :keys
-  {:address
-   {:type zen/vector,
-    :every
-    {:type zen/map,
-     :keys
-     {:country #:fhir{:flags #{:MS}},
-      :district #:fhir{:flags #{:MS}}}}},
-   :meta
-   {:type zen/map,
-    :keys
-    {:lastUpdated #:fhir{:flags #{:MS}},
-     :profile
-     {:type zen/vector,
-      :slicing
-      {:slices
-       {"supportedProfile"
-        {:schema {:type zen/vector, :minItems 1, :maxItems 1},
-         :filter
-         {:engine :match,
-          :match
-          (:zen.match/one-of
-           #{"http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-Patient|1.2.0"
-             "http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-Patient"})}}}},
-      :minItems 1}},
-    :require #{:lastUpdated :profile},
-    :fhir/flags #{:MS}},
-   :deceased
-   {:fhir/polymorphic true, :type zen/map, :fhir/flags #{:MS}},
-   :identifier
-   {:type zen/vector,
-    :slicing
-    {:slices
-     {"memberid"
-      {:schema
-       {:type zen/vector,
-        :minItems 1,
-        :every
-        {:type zen/map,
-         :keys
-         {:type
-          {:match
-           {:coding
-            #{{:system "http://terminology.hl7.org/CodeSystem/v2-0203",
-               :code "MB"}}}}},
-         :require #{:type}}},
-       :filter
-       {:engine :match,
-        :match
-        {:type
-         {:coding
-          #{{:system "http://terminology.hl7.org/CodeSystem/v2-0203",
-             :code "MB"}}}}}},
-      "uniquememberid"
-      {:schema
-       {:type zen/vector,
-        :every
-        {:type zen/map,
-         :keys
-         {:type
-          {:match
-           {:coding
-            #{{:system
-               "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBIdentifierType",
-               :code "um"}}}}},
-         :require #{:type}}},
-       :filter
-       {:engine :match,
-        :match
-        {:type
-         {:coding
-          #{{:system
-             "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBIdentifierType",
-             :code "um"}}}}}}}},
-    :every
-    {:type zen/map,
-     :keys
-     {:type
-      #:zen.fhir{:value-set
-                 {:symbol
-                  hl7-fhir-us-carin-bb.value-set.C4BBPatientIdentifierType/value-set,
-                  :strength :extensible}}}}}},
-  :zen.fhir/type "Patient"}}
+ import #{zen.fhir
+          hl7-fhir-us-carin-bb.value-set.C4BBPatientIdentifierType
+          hl7-fhir-us-core.us-core-patient},
+ schema {:zen.fhir/version "0.6.6-8",
+         :confirms #{hl7-fhir-us-core.us-core-patient/schema
+                     zen.fhir/Resource},
+         :zen/tags #{zen.fhir/profile-schema zen/schema},
+         :zen.fhir/profileUri "http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-Patient",
+         :require #{:meta},
+         :type zen/map,
+         :zen/desc "This profile builds upon the US Core Patient profile. It is used to convey information about the patient who received the services described on the claim.",
+         :keys {:address {:type zen/vector,
+                          :every {:type zen/map,
+                                  :keys {:country {:fhir/flags #{:MS}},
+                                         :district {:fhir/flags #{:MS}}}}},
+                :meta {:type zen/map,
+                       :keys {:lastUpdated {:fhir/flags #{:MS}},
+                              :profile {:type zen/vector,
+                                        :slicing {:slices {"supportedProfile" {:schema {:type zen/vector,
+                                                                                        :minItems 1,
+                                                                                        :maxItems 1},
+                                                                               :filter {:engine :match,
+                                                                                        :match (:zen.match/one-of
+                                                                                                #{"http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-Patient|1.2.0"
+                                                                                                  "http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-Patient"})}}}},
+                                        :minItems 1}},
+                       :require #{:lastUpdated :profile},
+                       :fhir/flags #{:MS}},
+                :deceased {:fhir/polymorphic true,
+                           :type zen/map,
+                           :fhir/flags #{:MS}},
+                :identifier {:type zen/vector,
+                             :slicing {:slices {"memberid" {:schema {:type zen/vector,
+                                                                     :minItems 1,
+                                                                     :every {:type zen/map,
+                                                                             :keys {:type {:match {:coding #{{:system "http://terminology.hl7.org/CodeSystem/v2-0203",
+                                                                                                              :code "MB"}}}}},
+                                                                             :require #{:type}}},
+                                                            :filter {:engine :match,
+                                                                     :match {:type {:coding #{{:system "http://terminology.hl7.org/CodeSystem/v2-0203",
+                                                                                               :code "MB"}}}}}},
+                                                "uniquememberid" {:schema {:type zen/vector,
+                                                                           :every {:type zen/map,
+                                                                                   :keys {:type {:match {:coding #{{:system "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBIdentifierType",
+                                                                                                                    :code "um"}}}}},
+                                                                                   :require #{:type}}},
+                                                                  :filter {:engine :match,
+                                                                           :match {:type {:coding #{{:system "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBIdentifierType",
+                                                                                                     :code "um"}}}}}}}},
+                             :every {:type zen/map,
+                                     :keys {:type {:zen.fhir/value-set {:symbol hl7-fhir-us-carin-bb.value-set.C4BBPatientIdentifierType/value-set,
+                                                                        :strength :extensible}}}}}},
+         :zen.fhir/type "Patient"}}

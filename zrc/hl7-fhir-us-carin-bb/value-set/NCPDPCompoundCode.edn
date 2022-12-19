@@ -1,19 +1,14 @@
 {ns hl7-fhir-us-carin-bb.value-set.NCPDPCompoundCode,
  import #{zen.fhir},
- value-set
- {:zen/tags #{zen.fhir/value-set},
-  :zen/desc
-  "Code indicating whether or not the prescription is a compound. (NCPDP ECL 406-D6)\n\nLink to information about the code system - including how to obtain the content: [https://standards.ncpdp.org/Access-to-Standards.aspx](https://standards.ncpdp.org/Access-to-Standards.aspx)",
-  :zen.fhir/version "0.6.6-7",
-  :fhir/code-systems
-  #{{:fhir/url
-     "http://terminology.hl7.org/CodeSystem/NCPDPCompoundCode",
-     :zen.fhir/content :not-present}},
-  :uri "http://hl7.org/fhir/us/carin-bb/ValueSet/NCPDPCompoundCode",
-  :version "1.2.0",
-  :ftr
-  {:module "ig",
-   :source-urls ["node_modules/hl7.fhir.us.carin-bb"],
-   :source-type :igs,
-   :ftr-path "ftr",
-   :tag "init"}}}
+ value-set {:zen/tags #{zen.fhir/value-set},
+            :zen/desc "Code indicating whether or not the prescription is a compound. (NCPDP ECL 406-D6)\n\nLink to information about the code system - including how to obtain the content: [https://standards.ncpdp.org/Access-to-Standards.aspx](https://standards.ncpdp.org/Access-to-Standards.aspx)",
+            :zen.fhir/version "0.6.6-8",
+            :fhir/code-systems #{{:fhir/url "http://terminology.hl7.org/CodeSystem/NCPDPCompoundCode",
+                                  :zen.fhir/content :not-present}},
+            :uri "http://hl7.org/fhir/us/carin-bb/ValueSet/NCPDPCompoundCode",
+            :version "1.2.0",
+            :ftr {:module "ig",
+                  :source-urls ["node_modules/hl7.fhir.us.carin-bb"],
+                  :source-type :igs,
+                  :ftr-path "ftr",
+                  :tag "init"}}}

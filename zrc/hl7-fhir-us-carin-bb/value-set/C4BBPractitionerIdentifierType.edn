@@ -1,21 +1,16 @@
 {ns hl7-fhir-us-carin-bb.value-set.C4BBPractitionerIdentifierType,
  import #{zen.fhir},
- value-set
- {:zen/tags #{zen.fhir/value-set},
-  :zen/desc "Identifies the type of identifiers for practitioners",
-  :zen.fhir/version "0.6.6-7",
-  :fhir/code-systems
-  #{{:fhir/url
-     "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBIdentifierType",
-     :zen.fhir/content :bundled}
-    {:fhir/url "http://terminology.hl7.org/CodeSystem/v2-0203",
-     :zen.fhir/content :bundled}},
-  :uri
-  "http://hl7.org/fhir/us/carin-bb/ValueSet/C4BBPractitionerIdentifierType",
-  :version "1.2.0",
-  :ftr
-  {:module "ig",
-   :source-urls ["node_modules/hl7.fhir.us.carin-bb"],
-   :source-type :igs,
-   :ftr-path "ftr",
-   :tag "init"}}}
+ value-set {:zen/tags #{zen.fhir/value-set},
+            :zen/desc "Identifies the type of identifiers for practitioners",
+            :zen.fhir/version "0.6.6-8",
+            :fhir/code-systems #{{:fhir/url "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBIdentifierType",
+                                  :zen.fhir/content :bundled}
+                                 {:fhir/url "http://terminology.hl7.org/CodeSystem/v2-0203",
+                                  :zen.fhir/content :bundled}},
+            :uri "http://hl7.org/fhir/us/carin-bb/ValueSet/C4BBPractitionerIdentifierType",
+            :version "1.2.0",
+            :ftr {:module "ig",
+                  :source-urls ["node_modules/hl7.fhir.us.carin-bb"],
+                  :source-type :igs,
+                  :ftr-path "ftr",
+                  :tag "init"}}}

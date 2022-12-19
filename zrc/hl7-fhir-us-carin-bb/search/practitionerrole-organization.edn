@@ -1,15 +1,12 @@
 {ns hl7-fhir-us-carin-bb.search.practitionerrole-organization,
  import #{zen.fhir},
- search
- {:zen/tags #{zen.fhir/search},
-  :fhir/id "practitionerrole-organization",
-  :fhir/url
-  "http://hl7.org/fhir/us/carin-bb/SearchParameter/practitionerrole-organization",
-  :fhir/type "reference",
-  :name "organization",
-  :expr
-  {:PractitionerRole
-   {:knife [["organization"]],
-    :jsonpath ["$.\"organization\"[*]"],
-    :data-types #{{:type "Reference", :polymorphic? false}},
-    :template :reference}}}}
+ search {:zen/tags #{zen.fhir/search},
+         :fhir/id "practitionerrole-organization",
+         :fhir/url "http://hl7.org/fhir/us/carin-bb/SearchParameter/practitionerrole-organization",
+         :fhir/type "reference",
+         :name "organization",
+         :expr {:PractitionerRole {:knife [["organization"]],
+                                   :jsonpath ["$.\"organization\"[*]"],
+                                   :data-types #{{:type "Reference",
+                                                  :polymorphic? false}},
+                                   :template :reference}}}}

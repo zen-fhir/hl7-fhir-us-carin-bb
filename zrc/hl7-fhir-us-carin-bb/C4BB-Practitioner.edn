@@ -1,34 +1,24 @@
 {ns hl7-fhir-us-carin-bb.C4BB-Practitioner,
  import #{zen.fhir hl7-fhir-us-core.us-core-practitioner},
- schema
- {:zen.fhir/version "0.6.6-7",
-  :confirms
-  #{hl7-fhir-us-core.us-core-practitioner/schema zen.fhir/Resource},
-  :zen/tags #{zen.fhir/profile-schema zen/schema},
-  :zen.fhir/profileUri
-  "http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-Practitioner",
-  :require #{:meta},
-  :type zen/map,
-  :zen/desc
-  "This profile builds upon the US Core Practitioner profile. It is used to convey information about the practitioner who provided to the patient services described on the claim.",
-  :keys
-  {:meta
-   {:type zen/map,
-    :keys
-    {:lastUpdated #:fhir{:flags #{:MS}},
-     :profile
-     {:type zen/vector,
-      :slicing
-      {:slices
-       {"supportedProfile"
-        {:schema {:type zen/vector, :minItems 1, :maxItems 1},
-         :filter
-         {:engine :match,
-          :match
-          (:zen.match/one-of
-           #{"http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-Practitioner"
-             "http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-Practitioner|1.2.0"})}}}},
-      :minItems 1}},
-    :require #{:lastUpdated :profile},
-    :fhir/flags #{:MS}}},
-  :zen.fhir/type "Practitioner"}}
+ schema {:zen.fhir/version "0.6.6-8",
+         :confirms #{hl7-fhir-us-core.us-core-practitioner/schema
+                     zen.fhir/Resource},
+         :zen/tags #{zen.fhir/profile-schema zen/schema},
+         :zen.fhir/profileUri "http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-Practitioner",
+         :require #{:meta},
+         :type zen/map,
+         :zen/desc "This profile builds upon the US Core Practitioner profile. It is used to convey information about the practitioner who provided to the patient services described on the claim.",
+         :keys {:meta {:type zen/map,
+                       :keys {:lastUpdated {:fhir/flags #{:MS}},
+                              :profile {:type zen/vector,
+                                        :slicing {:slices {"supportedProfile" {:schema {:type zen/vector,
+                                                                                        :minItems 1,
+                                                                                        :maxItems 1},
+                                                                               :filter {:engine :match,
+                                                                                        :match (:zen.match/one-of
+                                                                                                #{"http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-Practitioner"
+                                                                                                  "http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-Practitioner|1.2.0"})}}}},
+                                        :minItems 1}},
+                       :require #{:lastUpdated :profile},
+                       :fhir/flags #{:MS}}},
+         :zen.fhir/type "Practitioner"}}

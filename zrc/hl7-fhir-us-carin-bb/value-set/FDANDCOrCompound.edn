@@ -1,21 +1,16 @@
 {ns hl7-fhir-us-carin-bb.value-set.FDANDCOrCompound,
  import #{zen.fhir},
- value-set
- {:zen/tags #{zen.fhir/value-set},
-  :zen/desc
-  "Values will be the NDC Codes when the Compound Code value is 0 or 1.  When the Compound Code value = 2, the value will be the literal, ‘compound’",
-  :zen.fhir/version "0.6.6-7",
-  :fhir/code-systems
-  #{{:fhir/url "http://hl7.org/fhir/sid/ndc",
-     :zen.fhir/content :not-present}
-    {:fhir/url
-     "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBCompoundLiteral",
-     :zen.fhir/content :bundled}},
-  :uri "http://hl7.org/fhir/us/carin-bb/ValueSet/FDANDCOrCompound",
-  :version "1.2.0",
-  :ftr
-  {:module "ig",
-   :source-urls ["node_modules/hl7.fhir.us.carin-bb"],
-   :source-type :igs,
-   :ftr-path "ftr",
-   :tag "init"}}}
+ value-set {:zen/tags #{zen.fhir/value-set},
+            :zen/desc "Values will be the NDC Codes when the Compound Code value is 0 or 1.  When the Compound Code value = 2, the value will be the literal, ‘compound’",
+            :zen.fhir/version "0.6.6-8",
+            :fhir/code-systems #{{:fhir/url "http://hl7.org/fhir/sid/ndc",
+                                  :zen.fhir/content :not-present}
+                                 {:fhir/url "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBCompoundLiteral",
+                                  :zen.fhir/content :bundled}},
+            :uri "http://hl7.org/fhir/us/carin-bb/ValueSet/FDANDCOrCompound",
+            :version "1.2.0",
+            :ftr {:module "ig",
+                  :source-urls ["node_modules/hl7.fhir.us.carin-bb"],
+                  :source-type :igs,
+                  :ftr-path "ftr",
+                  :tag "init"}}}

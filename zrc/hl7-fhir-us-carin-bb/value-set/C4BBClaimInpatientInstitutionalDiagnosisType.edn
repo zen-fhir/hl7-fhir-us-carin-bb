@@ -1,24 +1,16 @@
-{ns
- hl7-fhir-us-carin-bb.value-set.C4BBClaimInpatientInstitutionalDiagnosisType,
+{ns hl7-fhir-us-carin-bb.value-set.C4BBClaimInpatientInstitutionalDiagnosisType,
  import #{zen.fhir},
- value-set
- {:zen/tags #{zen.fhir/value-set},
-  :zen/desc
-  "Indicates if the inpatient institutional diagnosis is admitting, principal, other or an external cause of injury.",
-  :zen.fhir/version "0.6.6-7",
-  :fhir/code-systems
-  #{{:fhir/url
-     "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBClaimDiagnosisType",
-     :zen.fhir/content :bundled}
-    {:fhir/url
-     "http://terminology.hl7.org/CodeSystem/ex-diagnosistype",
-     :zen.fhir/content :bundled}},
-  :uri
-  "http://hl7.org/fhir/us/carin-bb/ValueSet/C4BBClaimInpatientInstitutionalDiagnosisType",
-  :version "1.2.0",
-  :ftr
-  {:module "ig",
-   :source-urls ["node_modules/hl7.fhir.us.carin-bb"],
-   :source-type :igs,
-   :ftr-path "ftr",
-   :tag "init"}}}
+ value-set {:zen/tags #{zen.fhir/value-set},
+            :zen/desc "Indicates if the inpatient institutional diagnosis is admitting, principal, other or an external cause of injury.",
+            :zen.fhir/version "0.6.6-8",
+            :fhir/code-systems #{{:fhir/url "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBClaimDiagnosisType",
+                                  :zen.fhir/content :bundled}
+                                 {:fhir/url "http://terminology.hl7.org/CodeSystem/ex-diagnosistype",
+                                  :zen.fhir/content :bundled}},
+            :uri "http://hl7.org/fhir/us/carin-bb/ValueSet/C4BBClaimInpatientInstitutionalDiagnosisType",
+            :version "1.2.0",
+            :ftr {:module "ig",
+                  :source-urls ["node_modules/hl7.fhir.us.carin-bb"],
+                  :source-type :igs,
+                  :ftr-path "ftr",
+                  :tag "init"}}}

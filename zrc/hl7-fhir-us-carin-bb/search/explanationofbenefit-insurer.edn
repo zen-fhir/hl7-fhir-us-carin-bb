@@ -1,15 +1,12 @@
 {ns hl7-fhir-us-carin-bb.search.explanationofbenefit-insurer,
  import #{zen.fhir},
- search
- {:zen/tags #{zen.fhir/search},
-  :fhir/id "explanationofbenefit-insurer",
-  :fhir/url
-  "http://hl7.org/fhir/us/carin-bb/SearchParameter/explanationofbenefit-insurer",
-  :fhir/type "reference",
-  :name "insurer",
-  :expr
-  {:ExplanationOfBenefit
-   {:knife [["insurer"]],
-    :jsonpath ["$.\"insurer\"[*]"],
-    :data-types #{{:type "Reference", :polymorphic? false}},
-    :template :reference}}}}
+ search {:zen/tags #{zen.fhir/search},
+         :fhir/id "explanationofbenefit-insurer",
+         :fhir/url "http://hl7.org/fhir/us/carin-bb/SearchParameter/explanationofbenefit-insurer",
+         :fhir/type "reference",
+         :name "insurer",
+         :expr {:ExplanationOfBenefit {:knife [["insurer"]],
+                                       :jsonpath ["$.\"insurer\"[*]"],
+                                       :data-types #{{:type "Reference",
+                                                      :polymorphic? false}},
+                                       :template :reference}}}}
