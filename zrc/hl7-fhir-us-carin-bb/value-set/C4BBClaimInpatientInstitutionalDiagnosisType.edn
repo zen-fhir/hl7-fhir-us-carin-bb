@@ -2,7 +2,7 @@
  import #{zen.fhir},
  value-set {:zen/tags #{zen.fhir/value-set},
             :zen/desc "Indicates if the inpatient institutional diagnosis is admitting, principal, other or an external cause of injury.",
-            :zen.fhir/version "0.6.7-3",
+            :zen.fhir/version "0.6.7-4",
             :fhir/code-systems #{{:fhir/url "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBClaimDiagnosisType",
                                   :zen.fhir/content :bundled}
                                  {:fhir/url "http://terminology.hl7.org/CodeSystem/ex-diagnosistype",
