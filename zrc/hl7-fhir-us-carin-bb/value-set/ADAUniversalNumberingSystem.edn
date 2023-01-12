@@ -2,13 +2,8 @@
  import #{zen.fhir},
  value-set {:zen/tags #{zen.fhir/value-set},
             :zen/desc "The American Dental Association Universal Numbering System is a tooth notation system primarily used in the United States.\n\nTeeth are numbered from the viewpoint of the dental practitioner looking into the open mouth, clockwise starting from the distalmost right maxillary teeth.",
-            :zen.fhir/version "0.6.7-5",
+            :zen.fhir/version "0.6.8",
             :fhir/code-systems #{{:fhir/url "https://ada.org/ToothNumberingSystem-TEMPORARY-WAITING-FOR-HTA-DEFINED-URL",
                                   :zen.fhir/content :not-present}},
             :uri "http://hl7.org/fhir/us/carin-bb/ValueSet/ADAUniversalNumberingSystem",
-            :version "1.2.0",
-            :ftr {:module "ig",
-                  :source-urls ["node_modules/hl7.fhir.us.carin-bb"],
-                  :source-type :igs,
-                  :ftr-path "ftr",
-                  :tag "init"}}}
+            :version "1.2.0"}}
