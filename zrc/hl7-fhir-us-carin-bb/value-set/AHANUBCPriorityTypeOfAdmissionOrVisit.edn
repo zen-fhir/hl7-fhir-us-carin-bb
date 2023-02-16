@@ -2,7 +2,7 @@
  import #{zen.fhir},
  value-set {:zen/tags #{zen.fhir/value-set},
             :zen/desc "The UB-04 Data File contains the complete set of NUBC codes. Every code in the range of possible codes is accounted for sequentially. There are no gaps because all used and unused codes are identified.\n\nThis code system consists of the following:\n\n*   FL 14 - Priority (Type) of Admission or Visit\n\nThese codes are used to convey the priority of an admission or visit and are the property of the American Hospital Association.\n\nTo obtain the underlying code systems, please see information [here](https://www.nubc.org/subscription-information)",
-            :zen.fhir/version "0.16.13-2",
+            :zen.fhir/version "0.6.14",
             :fhir/code-systems #{{:fhir/url "https://www.nubc.org/CodeSystem/PriorityTypeOfAdmitOrVisit",
                                   :zen.fhir/content :not-present}},
             :uri "http://hl7.org/fhir/us/carin-bb/ValueSet/AHANUBCPriorityTypeOfAdmissionOrVisit",
