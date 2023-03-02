@@ -1,6 +1,6 @@
 {ns hl7-fhir-us-carin-bb.C4BB-Practitioner,
  import #{zen.fhir hl7-fhir-us-core.us-core-practitioner},
- schema {:zen.fhir/version "0.6.15",
+ schema {:zen.fhir/version "0.6.16-3",
          :confirms #{hl7-fhir-us-core.us-core-practitioner/schema
                      zen.fhir/Resource},
          :zen/tags #{zen.fhir/profile-schema zen/schema},
