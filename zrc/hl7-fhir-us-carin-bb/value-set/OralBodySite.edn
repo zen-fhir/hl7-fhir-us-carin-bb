@@ -2,7 +2,7 @@
  import #{zen.fhir},
  value-set {:zen/tags #{zen.fhir/value-set},
             :zen/desc "Oral Body Site indicating tooth numbers and area of oral cavity.",
-            :zen.fhir/version "0.6.17-4",
+            :zen.fhir/version "0.6.18-1",
             :fhir/code-systems #{{:fhir/url "https://ada.org/OralCavityCode-TEMPORARY-WAITING-FOR-HTA-DEFINED-URL",
                                   :zen.fhir/content :not-present}
                                  {:fhir/url "https://ada.org/ToothNumberingSystem-TEMPORARY-WAITING-FOR-HTA-DEFINED-URL",
