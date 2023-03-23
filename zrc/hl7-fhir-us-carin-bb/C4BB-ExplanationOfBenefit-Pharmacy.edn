@@ -5,6 +5,7 @@
           hl7-fhir-us-carin-bb.value-set.NCPDPRejectCode
           hl7-fhir-us-carin-bb.value-set.FDANationalDrugCode
           hl7-fhir-us-carin-bb.value-set.C4BBClaimPharmacyTeamRole
+          hl7-fhir-us-carin-bb.C4BB-ExplanationOfBenefit-Pharmacy
           hl7-fhir-us-carin-bb.C4BB-ExplanationOfBenefit
           hl7-fhir-us-carin-bb.value-set.NCPDPPrescriptionOriginCode
           hl7-fhir-us-carin-bb.value-set.FDANDCOrCompound
@@ -12,7 +13,14 @@
           hl7-fhir-us-carin-bb.value-set.C4BBTotalCategoryDiscriminator
           hl7-fhir-us-carin-bb.value-set.C4BBPayerProviderContractingStatus
           hl7-fhir-us-carin-bb.value-set.NCPDPCompoundCode},
- schema {:zen.fhir/version "0.6.18-1",
+ item-adjudication-schema {:zen/tags #{zen/schema
+                                       zen.fhir/structure-schema},
+                           :zen.fhir/version "0.6.19",
+                           :type zen/map,
+                           :keys {:category {:zen.fhir/value-set {:symbol hl7-fhir-us-carin-bb.value-set.C4BBAdjudicationCategoryDiscriminator/value-set,
+                                                                  :strength :required}}},
+                           :fhir/flags #{:MS}},
+ schema {:zen.fhir/version "0.6.19",
          :confirms #{zen.fhir/Resource
                      hl7-fhir-us-carin-bb.C4BB-ExplanationOfBenefit/schema},
          :zen/tags #{zen.fhir/profile-schema zen/schema},
@@ -171,10 +179,7 @@
                                                                                         :filter {:engine :match,
                                                                                                  :match {:category {:coding #{{:system "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBAdjudicationDiscriminator",
                                                                                                                                :code "denialreason"}}}}}}}},
-                                                     :every {:type zen/map,
-                                                             :keys {:category {:zen.fhir/value-set {:symbol hl7-fhir-us-carin-bb.value-set.C4BBAdjudicationCategoryDiscriminator/value-set,
-                                                                                                    :strength :required}}},
-                                                             :fhir/flags #{:MS}},
+                                                     :every {:confirms #{hl7-fhir-us-carin-bb.C4BB-ExplanationOfBenefit-Pharmacy/item-adjudication-schema}},
                                                      :minItems 1},
                                       :detail {:type zen/vector,
                                                :every {:type zen/map,
