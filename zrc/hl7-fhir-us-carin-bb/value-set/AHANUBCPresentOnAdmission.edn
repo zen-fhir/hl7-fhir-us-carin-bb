@@ -2,7 +2,7 @@
  import #{zen.fhir},
  value-set {:zen/tags #{zen.fhir/value-set},
             :zen/desc "The UB-04 Data File contains the complete set of NUBC codes. Every code in the range of possible codes is accounted for sequentially. There are no gaps because all used and unused codes are identified.\n\nThis code system consists of the following:\n\n*   FL 67 - Present On Admission Indicator\n\nThese codes are used to report the principal diagnosis code (ICD-9 or ICD-10 code) and each of the secondary diagnoses.  The 8th character in that set (first 7 are ICD) is the location used to report whether or not a condition was present on admission. The present on admission code acts as a modifier and is used to further define another code, so as to say this ICD-10 code is for a condition that was/was not present on admission.  It should be noted that present on admission also appears in FL 72\n\nTo obtain the underlying code systems, please see information [here](https://www.nubc.org/subscription-information)",
-            :zen.fhir/version "0.6.22",
+            :zen.fhir/version "0.6.22-1",
             :fhir/code-systems #{{:fhir/url "https://www.nubc.org/CodeSystem/PresentOnAdmissionIndicator",
                                   :zen.fhir/content :not-present}},
             :uri "http://hl7.org/fhir/us/carin-bb/ValueSet/AHANUBCPresentOnAdmission",
