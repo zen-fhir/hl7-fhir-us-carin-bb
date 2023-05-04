@@ -2,7 +2,7 @@
  import #{zen.fhir},
  value-set {:zen/tags #{zen.fhir/value-set},
             :zen/desc "Describes functional roles of the care team members.",
-            :zen.fhir/version "0.6.23-1",
+            :zen.fhir/version "0.6.24",
             :fhir/code-systems #{{:fhir/url "http://terminology.hl7.org/CodeSystem/claimcareteamrole",
                                   :zen.fhir/content :bundled}
                                  {:fhir/url "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBClaimCareTeamRole",
