@@ -2,7 +2,7 @@
  import #{zen.fhir},
  value-set {:zen/tags #{zen.fhir/value-set},
             :zen/desc "This value set includes FDI tooth surface codes localized for the US Realm.",
-            :zen.fhir/version "0.6.30-7",
+            :zen.fhir/version "0.6.30-10",
             :fhir/code-systems #{{:fhir/url "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSurfaceCodes",
                                   :zen.fhir/content :bundled}},
             :uri "http://hl7.org/fhir/us/carin-bb/ValueSet/C4BBSurfaceCodes",

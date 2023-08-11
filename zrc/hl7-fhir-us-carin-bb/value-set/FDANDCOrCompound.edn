@@ -2,7 +2,7 @@
  import #{zen.fhir},
  value-set {:zen/tags #{zen.fhir/value-set},
             :zen/desc "Values will be the NDC Codes when the Compound Code value is 0 or 1.  When the Compound Code value = 2, the value will be the literal, ‘compound’",
-            :zen.fhir/version "0.6.30-7",
+            :zen.fhir/version "0.6.30-10",
             :fhir/code-systems #{{:fhir/url "http://hl7.org/fhir/sid/ndc",
                                   :zen.fhir/content :not-present}
                                  {:fhir/url "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBCompoundLiteral",
